@@ -17,6 +17,7 @@ public class Analisis_Semantico
     {
         String archivoEntrada = "C:\\Users\\rogel\\OneDrive\\Escritorio\\Semestre 8\\Lenguajes Y Autómatas II\\Proyecto\\src\\Recursos\\Tabla de Tokens.txt";
         String archivoSalida = "C:\\Users\\rogel\\OneDrive\\Escritorio\\Semestre 8\\Lenguajes Y Autómatas II\\Proyecto\\src\\Recursos\\Tabla de Simbolos.txt";
+        String valor = "null";
         
         try (BufferedReader br = new BufferedReader(new FileReader(archivoEntrada));
              BufferedWriter bw = new BufferedWriter(new FileWriter(archivoSalida))) {
@@ -29,10 +30,27 @@ public class Analisis_Semantico
                 String terceraParte = partes[2].trim();
                 String cuartaParte = partes[3].trim();
                 
+                if(primeraParte.equals("entero"))
+                {
+                    valor = "0";
+                }
+                else if(primeraParte.equals("real"))
+                {
+                    valor = "0.0";
+                }
+                else if(primeraParte.equals("string"))
+                {
+                    valor = "Null";
+                }
+                else if(primeraParte.equals("logico"))
+                {
+                    valor = "True";
+                }
+                
                 if (!esPalabraReservada(primeraParte) && !esNumero(primeraParte)) {
                     bw.write(primeraParte + ",");
                     bw.write(segundaParte + ",");
-                    bw.write(obtenerValor(terceraParte) + ",");
+                    bw.write(valor + ",");
                     bw.write("Main\n");
                 }
             }
