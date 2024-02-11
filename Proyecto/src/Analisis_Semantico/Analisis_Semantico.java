@@ -5,6 +5,8 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 /**
  *
@@ -60,6 +62,14 @@ public class Analisis_Semantico
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
+        try {
+            eliminarLineasRepetidas(archivoSalida, archivoSalida);
+            System.out.println("Líneas repetidas eliminadas correctamente.");
+        } catch (IOException e) {
+            System.err.println("Error al procesar el archivo: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
     
     private static boolean esPalabraReservada(String palabra) {
@@ -86,18 +96,21 @@ public class Analisis_Semantico
         }
     }
     
-    private static String obtenerValor(String tipo) {
-        switch (tipo.toLowerCase()) {
-            case "entero":
-                return "0";
-            case "real":
-                return "0.0";
-            case "string":
-                return "Null";
-            case "logico":
-                return "True";
-            default:
-                return "";
+    public static void eliminarLineasRepetidas(String archivoEntrada, String archivoSalida) throws IOException {
+        Set<String> lineasUnicas = new LinkedHashSet<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(archivoEntrada))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                lineasUnicas.add(linea);
+            }
+        }
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivoSalida))) {
+            for (String linea : lineasUnicas) {
+                bw.write(linea);
+                bw.newLine();
+            }
         }
     }
 }
