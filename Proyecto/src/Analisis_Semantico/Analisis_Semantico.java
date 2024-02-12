@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.HashSet;
+import java.io.*;
 
 /**
  *
@@ -78,12 +79,19 @@ public class Analisis_Semantico
         } catch (IOException e) {
             System.err.println("Error al procesar el archivo: " + e.getMessage());
         }
+        
+        try {
+            eliminarLineas(archivoSalida);
+            System.out.println("Líneas eliminadas correctamente.");
+        } catch (IOException e) {
+            System.err.println("Error al procesar el archivo: " + e.getMessage());
+        }
     }
     
     private static boolean esPalabraReservada(String palabra) {
-        String[] palabrasReservadas = {"programa", "inicio", "fin", "leer", "escribir", "si", "sino", 
-                                        "mientras", "repetir", "hasta", "entero", "real", "string", 
-                                        "Logico", "logico", "Var", "var", "Entonces", "entonces",
+        String[] palabrasReservadas = {"programa", "inicio", "Inicio", "fin", "Fin", "leer", "escribir", "si", "sino", 
+                                        "mientras", "repetir", "hasta", "entero", "real", "string", "cadena",
+                                        "Logico", "logico", "Variables", "variables", "Entonces", "entonces",
                                         "Hacer", "hacer", "*", "/", "%", "+", "-", "=", "<", "<=",
                                         ">", ">=", "==", "!=", "&&", "||", "!", "(", ")", ";", ",",
                                         "true", "false"};
@@ -145,5 +153,32 @@ public class Analisis_Semantico
         BufferedWriter writer = new BufferedWriter(new FileWriter(inputFile));
         writer.write(result.toString());
         writer.close();
+    }
+     
+    public static void eliminarLineas(String fileName) throws IOException {
+        File inputFile = new File(fileName);
+        File tempFile = new File("tempFile.txt");
+
+        BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
+
+        String line;
+        while ((line = reader.readLine()) != null) {
+            // Si la línea no comienza con "," o """
+            if (!line.startsWith(",") && !line.startsWith("\"")) {
+                writer.write(line + System.getProperty("line.separator")); // Mantener la línea
+            }
+        }
+
+        writer.close();
+        reader.close();
+
+        // Sobreescribir el archivo original con el archivo temporal
+        if (!inputFile.delete()) {
+            throw new IOException("No se pudo eliminar el archivo original.");
+        }
+        if (!tempFile.renameTo(inputFile)) {
+            throw new IOException("No se pudo renombrar el archivo temporal.");
+        }
     }
 }
