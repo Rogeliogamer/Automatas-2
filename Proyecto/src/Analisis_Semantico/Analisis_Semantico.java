@@ -7,6 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.HashSet;
 
 /**
  *
@@ -70,6 +71,13 @@ public class Analisis_Semantico
             System.err.println("Error al procesar el archivo: " + e.getMessage());
             e.printStackTrace();
         }
+        
+        try {
+            eliminarLineasRepetidas2(archivoSalida);
+            System.out.println("Se eliminaron las líneas repetidas correctamente.");
+        } catch (IOException e) {
+            System.err.println("Error al procesar el archivo: " + e.getMessage());
+        }
     }
     
     private static boolean esPalabraReservada(String palabra) {
@@ -112,5 +120,30 @@ public class Analisis_Semantico
                 bw.newLine();
             }
         }
+    }
+    
+     public static void eliminarLineasRepetidas2(String inputFile) throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+        Set<String> firstParts = new HashSet<>();
+        StringBuilder result = new StringBuilder();
+
+        String line;
+        while ((line = reader.readLine()) != null) {
+            String[] parts = line.split(",", 4); // Divide la línea en dos partes utilizando ","
+            String firstPart = parts[0]; // La primera parte antes de la ","
+            if (!firstParts.contains(firstPart)) {
+                // Si esta es la primera vez que vemos esta primera parte, la agregamos al resultado
+                result.append(line).append("\n");
+                firstParts.add(firstPart);
+            }
+        }
+
+        // Cerrar el archivo
+        reader.close();
+
+        // Escribir el resultado de vuelta al archivo de entrada
+        BufferedWriter writer = new BufferedWriter(new FileWriter(inputFile));
+        writer.write(result.toString());
+        writer.close();
     }
 }
