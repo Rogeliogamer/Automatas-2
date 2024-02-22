@@ -17,23 +17,27 @@ import java.io.*;
  */
 public class Analisis_Semantico
 {
-    public static void main (String [] args)
-    {
-        String archivoEntrada = "C:\\Users\\rogel\\OneDrive\\Escritorio\\Semestre 8\\Lenguajes Y Autómatas II\\Proyecto\\src\\Recursos\\Tabla de Tokens.txt";
-        String archivoSalida = "C:\\Users\\rogel\\OneDrive\\Escritorio\\Semestre 8\\Lenguajes Y Autómatas II\\Proyecto\\src\\Recursos\\Tabla de Simbolos.txt";
+    public static void main (String [] args) throws IOException {
+        // declara los archivos de entrada y de salida
+        String archivoEntrada = "C:\\Users\\Asus TUF\\Desktop\\a\\Automatas-2\\Proyecto\\src\\Recursos\\Tabla de Tokens.txt";
+        String archivoSalida = "C:\\Users\\Asus TUF\\Desktop\\a\\Automatas-2\\Proyecto\\src\\Recursos\\Tabla de Simbolos.txt";
+        String archivoDirecciones ="C:\\Users\\Asus TUF\\Desktop\\a\\Automatas-2\\Proyecto\\src\\Recursos\\Tabla de direcciones.txt";
+        String archivoT2 ="C:\\Users\\Asus TUF\\Desktop\\a\\Automatas-2\\Proyecto\\src\\Recursos\\Tabla de Tokens2.txt";
         String valor = "null";
-        
+
+        // crea la lectura y escritura de los archivos
         try (BufferedReader br = new BufferedReader(new FileReader(archivoEntrada));
              BufferedWriter bw = new BufferedWriter(new FileWriter(archivoSalida))) {
-            
+            // linea almacena la linea leida del archivo
             String linea;
+            // en este ciclo lo que se hace es separar en 4 partes la cadena de entrada
             while ((linea = br.readLine()) != null) {
                 String[] partes = linea.split(",", 4);
                 String primeraParte = partes[0].trim();
                 String segundaParte = partes[1].trim();
                 String terceraParte = partes[2].trim();
                 String cuartaParte = partes[3].trim();
-                
+                // aqui de la primera parte de la cadena lo que se hace es asignar el tipo de valor que es
                 if(primeraParte.equals("entero"))
                 {
                     valor = "0";
@@ -50,7 +54,8 @@ public class Analisis_Semantico
                 {
                     valor = "True";
                 }
-                
+                // aqui se escribe en el archivo de salida al hacer la comparativa de si no es una palabra reservada
+                // y no es numero
                 if (!esPalabraReservada(primeraParte) && !esNumero(primeraParte)) {
                     bw.write(primeraParte + ",");
                     bw.write(segundaParte + ",");
@@ -58,13 +63,14 @@ public class Analisis_Semantico
                     bw.write("Main\n");
                 }
             }
-            
+
             System.out.println("Procesamiento completado. Se ha generado el archivo: " + archivoSalida);
-            
+
         } catch (IOException e) {
             e.printStackTrace();
         }
-        
+        crearDirecciones(archivoSalida,archivoDirecciones);
+
         try {
             eliminarLineasRepetidas(archivoSalida, archivoSalida);
             System.out.println("Líneas repetidas eliminadas correctamente.");
@@ -86,8 +92,59 @@ public class Analisis_Semantico
         } catch (IOException e) {
             System.err.println("Error al procesar el archivo: " + e.getMessage());
         }
+        tk2(archivoSalida,archivoEntrada,archivoT2);
     }
-    
+    private static void tk2(String leerS,String leerT,String escribirT){
+        try (BufferedReader leerToken = new BufferedReader(new FileReader(leerT));
+             BufferedWriter t2 = new BufferedWriter(new FileWriter(escribirT))){
+            String linea;
+            String linea2;
+            int cont = 0;
+            while ((linea = leerToken.readLine()) != null) {
+                String[] partes = linea.split(",", 4);
+                String primeraParte = partes[0].trim();
+                String segundaParte = partes[1].trim();
+                String terceraParte = partes[2].trim();
+                String cuartaParte = partes[3].trim();
+                BufferedReader leerSimbolos = new BufferedReader(new FileReader(leerS));
+                while ((linea2 = leerSimbolos.readLine()) !=null){
+                    String[] partesSimbolos = linea2.split(",", 4);
+                    String primeraParteSimbolo = partesSimbolos[0].trim();
+                    if(primeraParte.equals(primeraParteSimbolo)){
+                        terceraParte = "" + cont;
+                    }
+                    cont++;
+                }
+                leerSimbolos.close();
+                t2.write(primeraParte + "," +segundaParte + "," + terceraParte + "," + cuartaParte + "\n");
+                cont=0;
+            }
+            leerToken.close();
+            t2.close();
+        }catch (IOException e){
+
+        }
+    }
+    private static void crearDirecciones(String leer, String escribir){
+        try(BufferedReader leerSimbolos = new BufferedReader(new FileReader(leer));
+            BufferedWriter dw = new BufferedWriter(new FileWriter(escribir))) {
+
+
+            String s = leerSimbolos.readLine();
+            String[] partes = s.split(",", 4);
+            String primeraParte = partes[0].trim();
+            String segundaParte = partes[1].trim();
+            String terceraParte = partes[2].trim();
+            String cuartaParte = partes[3].trim();
+            dw.write(primeraParte + "," + segundaParte + "," + "1," + "0");
+            leerSimbolos.close();
+            dw.close();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
     private static boolean esPalabraReservada(String palabra) {
         String[] palabrasReservadas = {"programa", "inicio", "Inicio", "fin", "Fin", "leer", "escribir", "si", "sino", 
                                         "mientras", "repetir", "hasta", "entero", "real", "string", "cadena",
