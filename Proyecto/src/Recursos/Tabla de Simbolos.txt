@@ -1,4 +1,3 @@
-UNO@,-55,null,Main
 a&,-51,0,Main
 b&,-51,0,Main
 x%,-52,0.0,Main

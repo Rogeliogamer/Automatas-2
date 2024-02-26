@@ -5,6 +5,11 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import org.apache.commons.io.FileUtils;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.HashSet;
@@ -13,7 +18,7 @@ import java.io.*;
 /**
  *
  * @author Equipo 2
- * @version 06/02/202
+ * @version 26/02/202
  */
 public class Analisis_Semantico
 {
@@ -27,7 +32,9 @@ public class Analisis_Semantico
 
         // crea la lectura y escritura de los archivos
         try (BufferedReader br = new BufferedReader(new FileReader(archivoEntrada));
-             BufferedWriter bw = new BufferedWriter(new FileWriter(archivoSalida))) {
+             BufferedWriter bw = new BufferedWriter(new FileWriter(archivoSalida));
+             BufferedWriter dw = new BufferedWriter(new FileWriter(archivoDirecciones))) {
+
             // linea almacena la linea leida del archivo
             String linea;
             // en este ciclo lo que se hace es separar en 4 partes la cadena de entrada
@@ -54,6 +61,12 @@ public class Analisis_Semantico
                 {
                     valor = "True";
                 }
+                if(primeraParte.contains("@")){
+                    dw.write(primeraParte + ",");
+                    dw.write(segundaParte + ",");
+                    dw.write(cuartaParte + ",");
+                    dw.write("0");
+                }
                 // aqui se escribe en el archivo de salida al hacer la comparativa de si no es una palabra reservada
                 // y no es numero
                 if (!esPalabraReservada(primeraParte) && !esNumero(primeraParte)) {
@@ -69,7 +82,7 @@ public class Analisis_Semantico
         } catch (IOException e) {
             e.printStackTrace();
         }
-        crearDirecciones(archivoSalida,archivoDirecciones);
+        //crearDirecciones(archivoEntrada,archivoDirecciones);
 
         try {
             eliminarLineasRepetidas(archivoSalida, archivoSalida);
@@ -92,11 +105,18 @@ public class Analisis_Semantico
         } catch (IOException e) {
             System.err.println("Error al procesar el archivo: " + e.getMessage());
         }
+        File token2 = new File(archivoT2);
         tk2(archivoSalida,archivoEntrada,archivoT2);
+    }
+
+    private static void estaBien(){
+
     }
     private static void tk2(String leerS,String leerT,String escribirT){
         try (BufferedReader leerToken = new BufferedReader(new FileReader(leerT));
              BufferedWriter t2 = new BufferedWriter(new FileWriter(escribirT))){
+            File nuevo =new File(escribirT);
+            File original = new File(leerT);
             String linea;
             String linea2;
             int cont = 0;
@@ -119,16 +139,22 @@ public class Analisis_Semantico
                 t2.write(primeraParte + "," +segundaParte + "," + terceraParte + "," + cuartaParte + "\n");
                 cont=0;
             }
+
             leerToken.close();
             t2.close();
+            original.delete();
+            File archivoOriginal = new File(escribirT);
+            File archivoRenombrado = new File(archivoOriginal.getParent(), "Tabla de Tokens.txt");
+            FileUtils.moveFile(archivoOriginal, archivoRenombrado);
+
         }catch (IOException e){
 
+            System.out.println("no se pudo renombrar");
         }
     }
     private static void crearDirecciones(String leer, String escribir){
         try(BufferedReader leerSimbolos = new BufferedReader(new FileReader(leer));
             BufferedWriter dw = new BufferedWriter(new FileWriter(escribir))) {
-
 
             String s = leerSimbolos.readLine();
             String[] partes = s.split(",", 4);
@@ -146,6 +172,9 @@ public class Analisis_Semantico
         }
     }
     private static boolean esPalabraReservada(String palabra) {
+        if (palabra.contains("@")){
+            return true;
+        }
         String[] palabrasReservadas = {"programa", "inicio", "Inicio", "fin", "Fin", "leer", "escribir", "si", "sino", 
                                         "mientras", "repetir", "hasta", "entero", "real", "string", "cadena",
                                         "Logico", "logico", "Variables", "variables", "Entonces", "entonces",
