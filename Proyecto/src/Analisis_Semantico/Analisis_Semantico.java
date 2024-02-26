@@ -18,7 +18,7 @@ import java.io.*;
 /**
  *
  * @author Equipo 2
- * @version 26/02/202
+ * @version 26/02/2024
  */
 public class Analisis_Semantico
 {
