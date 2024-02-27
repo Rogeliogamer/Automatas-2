@@ -6,10 +6,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import org.apache.commons.io.FileUtils;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -119,6 +115,7 @@ public class Analisis_Semantico
             ArrayList<String> reales = new ArrayList<>();
             ArrayList<String> string = new ArrayList<>();
             ArrayList<String> logicos = new ArrayList<>();
+            ArrayList<String> general = new ArrayList<>();
 
             while ((linea = leerToken.readLine()) != null) {
                 String[] partes = linea.split(",", 4);
@@ -135,25 +132,32 @@ public class Analisis_Semantico
                    case "-54":
                        logicos.add(partes[0].trim().replace("#",""));
                        break;
+                   case "-55":
+                       general.add(partes[0].trim().replace("@",""));
                }
             }
             for (String elemento : enteros) {
-                if(reales.contains(elemento) || string.contains(elemento) || logicos.contains(elemento)){
+                if(reales.contains(elemento) || string.contains(elemento) || logicos.contains(elemento) || general.contains(elemento)){
                     throw new IOException("la variable esta declarada en 2 tipos de datos");
                 }
             }
             for (String elemento : reales) {
-                if(enteros.contains(elemento) || string.contains(elemento) || logicos.contains(elemento)){
+                if(enteros.contains(elemento) || string.contains(elemento) || logicos.contains(elemento)||general.contains(elemento)){
                     throw new IOException("la variable esta declarada en 2 tipos de datos");
                 }
             }
             for (String elemento : string) {
-                if(reales.contains(elemento) || enteros.contains(elemento) || logicos.contains(elemento)){
+                if(reales.contains(elemento) || enteros.contains(elemento) || logicos.contains(elemento)|| general.contains(elemento)){
                     throw new IOException("la variable esta declarada en 2 tipos de datos");
                 }
             }
             for (String elemento : logicos) {
-                if(reales.contains(elemento) || string.contains(elemento) || enteros.contains(elemento)){
+                if(reales.contains(elemento) || string.contains(elemento) || enteros.contains(elemento)|| general.contains(elemento)){
+                    throw new IOException("la variable esta declarada en 2 tipos de datos");
+                }
+            }
+            for (String elemento : general) {
+                if(reales.contains(elemento) || string.contains(elemento) || enteros.contains(elemento)|| logicos.contains(elemento)){
                     throw new IOException("la variable esta declarada en 2 tipos de datos");
                 }
             }

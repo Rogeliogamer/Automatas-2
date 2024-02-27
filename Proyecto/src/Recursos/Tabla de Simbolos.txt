@@ -1,7 +1,6 @@
-a&,-51,null,Main
-b&,-51,null,Main
-x%,-52,null,Main
-y%,-52,null,Main
-z$,-53,null,Main
-dos#,-54,null,Main
-dos$,-53,null,Main
+a&,-51,0,Main
+b&,-51,0,Main
+x%,-52,0.0,Main
+y%,-52,0.0,Main
+z$,-53,0.0,Main
+dos#,-54,True,Main
