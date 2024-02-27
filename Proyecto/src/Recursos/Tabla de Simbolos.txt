@@ -1,7 +1,6 @@
-UNO@,-55,null,Main
 a&,-51,0,Main
 b&,-51,0,Main
 x%,-52,0.0,Main
 y%,-52,0.0,Main
-z$,-53,0.0,Main
+z$,-53,Null,Main
 dos#,-54,True,Main
