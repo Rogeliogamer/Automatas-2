@@ -115,20 +115,50 @@ public class Analisis_Semantico
         try {
             BufferedReader leerToken = new BufferedReader(new FileReader(leer));
             String linea;
-            ArrayList<String> primeraParte = new ArrayList<>();
-            ArrayList<String> segundaParte = new ArrayList<>();
-            ArrayList<String> terceraParte = new ArrayList<>();
-            ArrayList<String> cuartaParte = new ArrayList<>();
+            ArrayList<String> enteros = new ArrayList<>();
+            ArrayList<String> reales = new ArrayList<>();
+            ArrayList<String> string = new ArrayList<>();
+            ArrayList<String> logicos = new ArrayList<>();
 
             while ((linea = leerToken.readLine()) != null) {
                 String[] partes = linea.split(",", 4);
-                 primeraParte.add(partes[0].trim());
-                 segundaParte.add(partes[1].trim());
-                 terceraParte.add(partes[2].trim());
-                 cuartaParte.add(partes[3].trim());
+               switch (partes[1].trim()){
+                   case "-51":
+                       enteros.add(partes[0].trim().replace("&",""));
+                       break;
+                   case "-52":
+                       reales.add(partes[0].trim().replace("%",""));
+                       break;
+                   case "-53":
+                       string.add(partes[0].trim().replace("$",""));
+                       break;
+                   case "-54":
+                       logicos.add(partes[0].trim().replace("#",""));
+                       break;
+               }
+            }
+            for (String elemento : enteros) {
+                if(reales.contains(elemento) || string.contains(elemento) || logicos.contains(elemento)){
+                    throw new IOException("la variable esta declarada en 2 tipos de datos");
+                }
+            }
+            for (String elemento : reales) {
+                if(enteros.contains(elemento) || string.contains(elemento) || logicos.contains(elemento)){
+                    throw new IOException("la variable esta declarada en 2 tipos de datos");
+                }
+            }
+            for (String elemento : string) {
+                if(reales.contains(elemento) || enteros.contains(elemento) || logicos.contains(elemento)){
+                    throw new IOException("la variable esta declarada en 2 tipos de datos");
+                }
+            }
+            for (String elemento : logicos) {
+                if(reales.contains(elemento) || string.contains(elemento) || enteros.contains(elemento)){
+                    throw new IOException("la variable esta declarada en 2 tipos de datos");
+                }
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getMessage());
         }
     }
     private static void tk2(String leerS,String leerT,String escribirT){
