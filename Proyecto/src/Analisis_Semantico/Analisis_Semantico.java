@@ -10,6 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.HashSet;
@@ -107,10 +108,28 @@ public class Analisis_Semantico
         }
         File token2 = new File(archivoT2);
         tk2(archivoSalida,archivoEntrada,archivoT2);
+        estaBien(archivoEntrada);
     }
 
-    private static void estaBien(){
+    private static void estaBien(String leer){
+        try {
+            BufferedReader leerToken = new BufferedReader(new FileReader(leer));
+            String linea;
+            ArrayList<String> primeraParte = new ArrayList<>();
+            ArrayList<String> segundaParte = new ArrayList<>();
+            ArrayList<String> terceraParte = new ArrayList<>();
+            ArrayList<String> cuartaParte = new ArrayList<>();
 
+            while ((linea = leerToken.readLine()) != null) {
+                String[] partes = linea.split(",", 4);
+                 primeraParte.add(partes[0].trim());
+                 segundaParte.add(partes[1].trim());
+                 terceraParte.add(partes[2].trim());
+                 cuartaParte.add(partes[3].trim());
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
     private static void tk2(String leerS,String leerT,String escribirT){
         try (BufferedReader leerToken = new BufferedReader(new FileReader(leerT));
@@ -139,7 +158,6 @@ public class Analisis_Semantico
                 t2.write(primeraParte + "," +segundaParte + "," + terceraParte + "," + cuartaParte + "\n");
                 cont=0;
             }
-
             leerToken.close();
             t2.close();
             original.delete();
