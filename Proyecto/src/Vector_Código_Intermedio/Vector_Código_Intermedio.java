@@ -37,6 +37,9 @@ public class Vector_Código_Intermedio {
             String lineaSiguiente;
             
             String guardado = null;
+            String temporal = null;
+            String until = null;
+            String begin = null;
             
             while ((linea = br.readLine()) != null)
             {
@@ -89,11 +92,18 @@ public class Vector_Código_Intermedio {
                         if (lineaSiguiente.equals("sino"))
                         {
                             casesino(linea);
+                            break;
                         }
-                        else
+                        else if (lineaSiguiente.equals("until"))
+                        {
+                            break;
+                        }
+                        else if(begin != null)
                         {
                             int apu = pilaDeDirecciones.pop();
                             cintaDeVCI.set(apu, (apuntador + 1) + "");
+                            begin = null;
+                            break;
                         }
                         break;
                     case "*":
@@ -134,6 +144,51 @@ public class Vector_Código_Intermedio {
                         break;
                     case "=":
                         verificarExistencia("=",palabra);
+                        break;
+                    case "repetir":
+                        pilaDeEstatutos.push(linea);
+                        pilaDeDirecciones.push(apuntador + 1);
+                        break;
+                    case "until":
+                        temporal = linea;
+                        until = "until";
+                        break;
+                    case "(":
+                        pilaDeOperadores.push(palabra);
+                        pilaDePrioridad.push(0);
+                        pilaDeOperadoresTokens.push(linea);
+                        break;
+                    case ")":
+                        while(pilaDeOperadores.pop().equals( "("))
+                        {
+                            pilaDePrioridad.pop();
+                            String token = pilaDeOperadoresTokens.pop();
+                            cintaDeVCI.add(token);
+                            cintaDeVCIApuntador.add(apuntador++);
+                        }
+                        
+                        pilaDePrioridad.pop();
+                        String token = pilaDeOperadoresTokens.pop();
+                        cintaDeVCI.add(token);
+                        cintaDeVCIApuntador.add(apuntador++);
+                        
+                        if("until".equals(until))
+                        {
+                            guardado = pilaDeDirecciones.pop() + "";
+                            cintaDeVCI.add(guardado);
+                            cintaDeVCIApuntador.add(apuntador++);
+                            until = null;
+                            
+                            if(temporal != null)
+                            {
+                                cintaDeVCI.add(temporal);
+                                cintaDeVCIApuntador.add(apuntador++);
+                                temporal = null;
+                            }
+                        }
+                        break;
+                    case "begin":
+                        begin = "begin";
                         break;
                 }
             }
