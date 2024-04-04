@@ -32,10 +32,10 @@ public class Vector_Código_Intermedio {
     {
         // Leer el archivo de texto línea por línea
         //try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\rogel\\OneDrive\\Escritorio\\Semestre 8\\Lenguajes Y Autómatas II\\Proyecto\\src\\Recursos\\Tabla de Tokens2.txt")))
-        try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\rogel\\OneDrive\\Escritorio\\Semestre 8\\Lenguajes Y Autómatas II\\Proyecto\\src\\Recursos\\Ejemplo.txt")))
+        try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\rogel\\OneDrive\\Escritorio\\Semestre 8\\Lenguajes Y Autómatas II\\Proyecto\\src\\Recursos\\Ejemplo2.txt")))
         {
             String linea;
-            String lineaSiguiente;
+            String lineaSiguiente = null;
             
             String guardado = null;
             String temporal = null;
@@ -46,9 +46,6 @@ public class Vector_Código_Intermedio {
             
             while ((linea = br.readLine()) != null)
             {
-                // Almacenar la posición actual del lector
-                br.mark(4096); // Establecer un límite para la cantidad de caracteres que se pueden retroceder
-
                 // Dividir la línea en partes
                 String[] partes = linea.split(",");
                 String palabra = partes[0];
@@ -81,33 +78,63 @@ public class Vector_Código_Intermedio {
                     case "sino":
                         guardado = linea;
                         pilaDeEstatutos.push(linea);
-                        pilaDeDirecciones.pop();
-                        cintaDeVCI.add((apuntador + 3) + "");
-                        cintaDeVCIApuntador.add(apuntador++);
+                        
+                        int apuntador2 = pilaDeDirecciones.pop();
+                        for (int i = 0; i < cintaDeVCI.size(); i++)
+                        {
+                            if (i == apuntador2)
+                            {
+                                cintaDeVCI.set(i-1, ((apuntador + 1) + 1) + "");
+                            }
+                        }
+                        
                         cintaDeVCI.add("└");
                         cintaDeVCIApuntador.add(apuntador++);
+                        
                         pilaDeDirecciones.push(apuntador + 1);
+                        
                         cintaDeVCI.add(guardado);
                         cintaDeVCIApuntador.add(apuntador++);
                         guardado = null;
                         break;
                     case "fin":
                         pilaDeEstatutos.pop();
-                        // Leer la línea siguiente
-                        lineaSiguiente = br.readLine();
-                        // Procesar la línea siguiente si es necesario
-                        if ("sino".equals(lineaSiguiente))
+                        
+                        String archivo = "C:\\Users\\rogel\\OneDrive\\Escritorio\\Semestre 8\\Lenguajes Y Autómatas II\\Proyecto\\src\\Recursos\\Ejemplo2.txt";
+                        String palabraBuscada = linea;
+                        try (BufferedReader br2 = new BufferedReader(new FileReader(archivo))) 
                         {
-                            casesino(linea);
+                            String linea2;
+                            boolean palabraEncontrada = false;
+                            
+                            // Leemos el archivo línea por línea
+                            while ((linea2 = br2.readLine()) != null)
+                            {
+                                // Buscamos la palabra en la línea
+                                if (linea2.contains(palabraBuscada))
+                                {
+                                    palabraEncontrada = true;
+                                    // Leemos la línea siguiente si existe
+                                    lineaSiguiente = br2.readLine();
+                                    break; // Salimos del bucle una vez que encontramos la palabra
+                                }
+                            }
+                        }
+                        
+                        String resultado = obtenerPrimerElementoSplit(lineaSiguiente);
+                        // Procesar la línea siguiente si es necesario
+                        if ("sino".equals(resultado))
+                        {
+                            resultado = null;
                             break;
                         }
-                        else if ("hasta".equals(lineaSiguiente))
+                        else if ("hasta".equals(resultado))
                         {
                             break;
                         }
                         else if (mientras != null)
                         {
-                            int apuntador2 = pilaDeDirecciones.pop();
+                            apuntador2 = pilaDeDirecciones.pop();
                             for (int i = 0; i < cintaDeVCI.size(); i++)
                             {
                                 if (i == apuntador2)
@@ -123,13 +150,28 @@ public class Vector_Código_Intermedio {
                             cintaDeVCIApuntador.add(apuntador++);
                             break;
                         }
-                        else if(inicio != null)
+                        else if(inicio != null && "inicio".equals(inicio))
                         {
                             int apu = pilaDeDirecciones.pop();
-                            cintaDeVCI.set((apu-1), (apuntador) + "");
+                            
+                            for (int i = 0; i < cintaDeVCI.size(); i++)
+                            {
+                                if (i == apu)
+                                {
+                                    if ("└".equals(cintaDeVCI.get(i-2)))
+                                    {
+                                        cintaDeVCI.set(i-2, apuntador + "");
+                                    }
+                                    else if ("└".equals(cintaDeVCI.get(i-1)))
+                                    {
+                                        cintaDeVCI.set(i-1, apuntador + "");
+                                    }
+                                }
+                            }
                             inicio = null;
                             break;
                         }
+                        
                         break;
                     case "*":
                         verificarExistencia("*", linea);
@@ -274,6 +316,7 @@ public class Vector_Código_Intermedio {
     {
         String guardado = linea;
         pilaDeEstatutos.push(linea);
+        
         pilaDeDirecciones.pop();
         cintaDeVCI.add((apuntador + 3) + "");
         cintaDeVCIApuntador.add(apuntador++);
@@ -460,6 +503,19 @@ public class Vector_Código_Intermedio {
         catch (IOException e)
         {
             System.err.println("Error al leer el archivo: " + e.getMessage());
+        }
+    }
+    
+    public static String obtenerPrimerElementoSplit(String cadena)
+    {
+        if (cadena != null)
+        {
+            String[] partes = cadena.split(",");
+            return partes.length > 0 ? partes[0] : "No se encontraron elementos después de dividir la cadena.";
+        }
+        else
+        {
+            return "La cadena es nula.";
         }
     }
 }
