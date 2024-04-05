@@ -43,6 +43,8 @@ public class Vector_Código_Intermedio {
             String hasta = null;
             String inicio = null;
             String mientras = null;
+            int apuntador2;
+            String resultado = null;
             
             while ((linea = br.readLine()) != null)
             {
@@ -79,7 +81,7 @@ public class Vector_Código_Intermedio {
                         guardado = linea;
                         pilaDeEstatutos.push(linea);
                         
-                        int apuntador2 = pilaDeDirecciones.pop();
+                        apuntador2 = pilaDeDirecciones.pop();
                         for (int i = 0; i < cintaDeVCI.size(); i++)
                         {
                             if (i == apuntador2)
@@ -121,7 +123,7 @@ public class Vector_Código_Intermedio {
                             }
                         }
                         
-                        String resultado = obtenerPrimerElementoSplit(lineaSiguiente);
+                        resultado = obtenerPrimerElementoSplit(lineaSiguiente);
                         // Procesar la línea siguiente si es necesario
                         if ("sino".equals(resultado))
                         {
@@ -171,7 +173,6 @@ public class Vector_Código_Intermedio {
                             inicio = null;
                             break;
                         }
-                        
                         break;
                     case "*":
                         verificarExistencia("*", linea);
@@ -217,8 +218,9 @@ public class Vector_Código_Intermedio {
                         pilaDeDirecciones.push(apuntador + 1);
                         break;
                     case "hasta":
+                        hasta = palabra;
                         temporal = linea;
-                        hasta = "hasta";
+                        inicio = null;
                         break;
                     case "(":
                         pilaDeOperadores.push(palabra);
@@ -226,7 +228,20 @@ public class Vector_Código_Intermedio {
                         pilaDeOperadoresTokens.push(linea);
                         break;
                     case ")":
-                        while(pilaDeOperadores.peek().equals( "("))
+                        while(!pilaDeOperadores.isEmpty() && pilaDeOperadores.peek().equals( "("))
+                        {
+                            String t = pilaDeOperadores.pop();
+                            pilaDePrioridad.pop();
+                            token = pilaDeOperadoresTokens.pop();
+                            if (!"(".equals(t))
+                            {
+                                cintaDeVCI.add(token);
+                                cintaDeVCIApuntador.add(apuntador++);
+                            }
+                            token = null;
+                        }
+                        
+                        if (!pilaDeOperadores.isEmpty())
                         {
                             pilaDeOperadores.pop();
                             pilaDePrioridad.pop();
@@ -234,20 +249,17 @@ public class Vector_Código_Intermedio {
                             cintaDeVCI.add(token);
                             cintaDeVCIApuntador.add(apuntador++);
                         }
-                        
-                        pilaDeOperadores.pop();
-                        pilaDePrioridad.pop();
-                        token = pilaDeOperadoresTokens.pop();
-                        cintaDeVCI.add(token);
-                        cintaDeVCIApuntador.add(apuntador++);
-                        //Elimina el ( de la pila
-                        pilaDeOperadores.pop();
-                        pilaDePrioridad.pop();
-                        pilaDeOperadoresTokens.pop();
+                        if (!pilaDeOperadores.isEmpty())
+                        {
+                            //Elimina el ( de la pila
+                            pilaDeOperadores.pop();
+                            pilaDePrioridad.pop();
+                            pilaDeOperadoresTokens.pop();
+                        }
                         
                         if("hasta".equals(hasta))
                         {
-                            guardado = pilaDeDirecciones.pop() + "";
+                            guardado = (pilaDeDirecciones.pop() - 1) + "";
                             cintaDeVCI.add(guardado);
                             cintaDeVCIApuntador.add(apuntador++);
                             hasta = null;
