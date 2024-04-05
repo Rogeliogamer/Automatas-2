@@ -32,7 +32,7 @@ public class Vector_Código_Intermedio {
     {
         // Leer el archivo de texto línea por línea
         //try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\rogel\\OneDrive\\Escritorio\\Semestre 8\\Lenguajes Y Autómatas II\\Proyecto\\src\\Recursos\\Tabla de Tokens2.txt")))
-        try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\rogel\\OneDrive\\Escritorio\\Semestre 8\\Lenguajes Y Autómatas II\\Proyecto\\src\\Recursos\\Ejemplo2.txt")))
+        try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\rogel\\OneDrive\\Escritorio\\Semestre 8\\Lenguajes Y Autómatas II\\Proyecto\\src\\Recursos\\Ejemplo4.txt")))
         {
             String linea;
             String lineaSiguiente = null;
@@ -102,7 +102,7 @@ public class Vector_Código_Intermedio {
                     case "fin":
                         pilaDeEstatutos.pop();
                         
-                        String archivo = "C:\\Users\\rogel\\OneDrive\\Escritorio\\Semestre 8\\Lenguajes Y Autómatas II\\Proyecto\\src\\Recursos\\Ejemplo2.txt";
+                        String archivo = "C:\\Users\\rogel\\OneDrive\\Escritorio\\Semestre 8\\Lenguajes Y Autómatas II\\Proyecto\\src\\Recursos\\Ejemplo4.txt";
                         String palabraBuscada = linea;
                         try (BufferedReader br2 = new BufferedReader(new FileReader(archivo))) 
                         {
@@ -134,22 +134,30 @@ public class Vector_Código_Intermedio {
                         {
                             break;
                         }
-                        else if (mientras != null)
+                        else if (mientras != null && "mientras".equals(mientras))
                         {
-                            apuntador2 = pilaDeDirecciones.pop();
-                            for (int i = 0; i < cintaDeVCI.size(); i++)
+                            if (!pilaDeDirecciones.isEmpty())
                             {
-                                if (i == apuntador2)
+                                apuntador2 = pilaDeDirecciones.pop();
+                                for (int i = 0; i < cintaDeVCI.size(); i++)
                                 {
-                                    cintaDeVCI.add(((apuntador + 1) + 2) + "");
-                                    cintaDeVCIApuntador.add(apuntador++);
+                                    if (i == apuntador2)
+                                    {
+                                        cintaDeVCI.set(i-1, ((apuntador + 1) + 1) + "");
+                                    }
                                 }
                             }
-                            apuntador2 = pilaDeDirecciones.pop();
-                            cintaDeVCI.add(apuntador2 + "");
-                            cintaDeVCIApuntador.add(apuntador++);
+                            
+                            if (!pilaDeDirecciones.isEmpty())
+                            {
+                                apuntador2 = pilaDeDirecciones.pop();
+                                cintaDeVCI.add((apuntador2 - 1) + "");
+                                cintaDeVCIApuntador.add(apuntador++);
+                            }
+                            
                             cintaDeVCI.add("fin-mientras");
                             cintaDeVCIApuntador.add(apuntador++);
+                            inicio = null;
                             break;
                         }
                         else if(inicio != null && "inicio".equals(inicio))
@@ -291,10 +299,13 @@ public class Vector_Código_Intermedio {
                             cintaDeVCIApuntador.add(apuntador++);
                             guardado = null;
                         }
+                        
                         cintaDeVCI.add("└");
                         cintaDeVCIApuntador.add(apuntador++);
+                        
                         pilaDeDirecciones.push(apuntador);
-                        cintaDeVCI.add("hacer");
+                        
+                        cintaDeVCI.add(linea);
                         cintaDeVCIApuntador.add(apuntador++);
                         break;
                     case ";":
