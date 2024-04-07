@@ -464,6 +464,53 @@
         </tr>
       </table>
     </div>
+    <h3>EJEMPLO Tabla de Símbolos</h3>
+    <div>
+      <table>
+        <tr>
+          <th>ID</th>
+          <th>TOKEN</th>
+          <th>VALOR</th>
+          <th>AMBITO</th>
+        </tr>
+        <tr>
+          <td>a&</td>
+          <td>-51</td>
+          <td>0</td>
+          <td>Main</td>
+        </tr>
+        <tr>
+          <td>b&</td>
+          <td>-51</td>
+          <td>0</td>
+          <td>Main</td>
+        </tr>
+        <tr>
+          <td>x%</td>
+          <td>-52</td>
+          <td>0.0</td>
+          <td>Main</td>
+        </tr>
+        <tr>
+          <td>y%</td>
+          <td>-52</td>
+          <td>0.0</td>
+          <td>Main</td>
+        </tr>
+        <tr>
+          <td>z$</td>
+          <td>-53</td>
+          <td>Null</td>
+          <td>Main</td>
+        </tr>
+        <tr>
+          <td>dos#</td>
+          <td>-54</td>
+          <td>True</td>
+          <td>Main</td>
+        </tr>
+      </table> 
+    </div>
   </div>
   
   <h2 style="display: inline-block">Practica 2 Vector de codigo intermedio</h2>
