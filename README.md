@@ -161,6 +161,7 @@
           <td>-55</td>
           <td>Logico (false)</td>
           <td>-65</td>
+          <!--Celdas vacias-->
           <td></td>
           <td></td>
         </tr>
@@ -169,6 +170,7 @@
           <td>-6</td>
           <td>=</td>
           <td>-26</td>
+          <!--Celdas vacias-->
           <td></td>
           <td></td>
           <td></td>
@@ -181,6 +183,7 @@
           <td>-7</td>
           <td><</td>
           <td>-31</td>
+          <!--Celdas vacias-->
           <td></td>
           <td></td>
           <td></td>
@@ -193,6 +196,7 @@
           <td>-8</td>
           <td><=</td>
           <td>-32</td>
+          <!--Celdas vacias-->
           <td></td>
           <td></td>
           <td></td>
@@ -205,6 +209,7 @@
           <td>-9</td>
           <td>></td>
           <td>-33</td>
+          <!--Celdas vacias-->
           <td></td>
           <td></td>
           <td></td>
@@ -217,6 +222,7 @@
           <td>-10</td>
           <td>>=</td>
           <td>-34</td>
+          <!--Celdas vacias-->
           <td></td>
           <td></td>
           <td></td>
@@ -229,6 +235,7 @@
           <td>-11</td>
           <td>==</td>
           <td>-35</td>
+          <!--Celdas vacias-->
           <td></td>
           <td></td>
           <td></td>
@@ -241,6 +248,7 @@
           <td>-12</td>
           <td>!=</td>
           <td>-36</td>
+          <!--Celdas vacias-->
           <td></td>
           <td></td>
           <td></td>
@@ -253,6 +261,7 @@
           <td>-13</td>
           <td>&&</td>
           <td>-41</td>
+          <!--Celdas vacias-->
           <td></td>
           <td></td>
           <td></td>
@@ -265,6 +274,7 @@
           <td>-14</td>
           <td>||</td>
           <td>-42</td>
+          <!--Celdas vacias-->
           <td></td>
           <td></td>
           <td></td>
@@ -277,6 +287,7 @@
           <td>-15</td>
           <td>!</td>
           <td>-43</td>
+          <!--Celdas vacias-->
           <td></td>
           <td></td>
           <td></td>
@@ -287,6 +298,7 @@
         <tr>
           <td>entonces</td>
           <td>-16</td>
+          <!--Celdas vacias-->
           <td></td>
           <td></td>
           <td></td>
@@ -299,6 +311,7 @@
         <tr>
           <td>hacer</td>
           <td>-17</td>
+          <!--Celdas vacias-->
           <td></td>
           <td></td>
           <td></td>
@@ -321,19 +334,19 @@
         </tr>
         <tr>
           <td>1</td>
-          <td>programa,-1,-1,1</td>
+          <td>programa, -1, -1, 1</td>
           <td>26</td>
-          <td>b&, -51, -2 , 9</td>
+          <td>b&, -51, -2, 9</td>
         </tr>
         <tr>
           <td>2</td>
-          <td>uno@,-55, -2 ,1</td>
+          <td>uno@, -55, -2, 1</td>
           <td>27</td>
-          <td>=, -26 , -1 , 9</td>
+          <td>=, -26, -1, 9</td>
         </tr>
         <tr>
           <td>3</td>
-          <td>; , -75 , -1 , 1</td>
+          <td>;, -75, -1, 1</td>
           <td>28</td>
           <td>0, -61, -1, 9</td>
         </tr>
@@ -347,126 +360,130 @@
           <td>5</td>
           <td>entero, -11, -1, 3</td>
           <td>30</td>
-          <td>z$, -53, -2 , 10</td>
+          <td>z$, -53, -2, 10</td>
         </tr>
         <tr>
           <td>6</td>
-          <td>a&, -51, -2 , 3</td>
+          <td>a&, -51, -2, 3</td>
           <td>31</td>
-          <td>= , -26 , -1 , 10</td>
+          <td>=, -26, -1, 10</td>
         </tr>
         <tr>
           <td>7</td>
-          <td>, , -76 , -1 , 3</td>
+          <td>,, -76, -1, 3</td>
           <td>32</td>
           <td>“Hola”, -63, -1, 10</td>
         </tr>
         <tr>
           <td>8</td>
-          <td>b& , -51 , -2 , 3</td>
+          <td>b&, -51, -2, 3</td>
           <td>33</td>
-          <td>; , -75, -1, 10</td>
+          <td>;, -75, -1, 10</td>
         </tr>
         <tr>
           <td>9</td>
-          <td>; , -75 , -1 , 3</td>
+          <td>;, -75, -1, 3</td>
           <td>34</td>
-          <td>x% , -52, -2 , 11</td>
+          <td>x%, -52, -2, 11</td>
         </tr>
         <tr>
           <td>10</td>
-          <td>real, -12, -1 , 4</td>
+          <td>real, -12, -1, 4</td>
           <td>35</td>
-          <td>= , -26 , -1 , 11</td>
+          <td>=, -26, -1, 11</td>
         </tr>
         <tr>
           <td>11</td>
-          <td>x%,-52, -2 , 4</td>
+          <td>x%, -52, -2, 4</td>
           <td>36</td>
           <td>45.5, -62, -1, 11</td>
         </tr>
         <tr>
           <td>12</td>
-          <td>, , -76 , -1 , 4</td>
+          <td>,, -76, -1, 4</td>
           <td>37</td>
-          <td>; , -75, -1, 11</td>
+          <td>;, -75, -1, 11</td>
         </tr>
         <tr>
           <td>13</td>
-          <td>y%, -52, -2 , 4</td>
+          <td>y%, -52, -2, 4</td>
           <td>38</td>
-          <td>y%, -52, -2 , 12</td>
+          <td>y%, -52, -2, 12</td>
         </tr>
         <tr>
           <td>14</td>
-          <td>; , -75, -1, 4</td>
+          <td>;, -75, -1, 4</td>
           <td>39</td>
-          <td>= ,-26 , -1 , 12</td>
+          <td>=, -26, -1, 12</td>
         </tr>
         <tr>
           <td>15</td>
-          <td>cadena, -13, -1 , 5</td>
+          <td>cadena, -13, -1, 5</td>
           <td>40</td>
           <td>6.6, -62, -1, 12</td>
         </tr>
         <tr>
           <td>16</td>
-          <td>z$, -53 , -2 , 5</td>
+          <td>z$, -53, -2, 5</td>
           <td>41</td>
-          <td>; , -75, -1, 12</td>
+          <td>;, -75, -1, 12</td>
         </tr>
         <tr>
           <td>17</td>
-          <td>; , -75 , -1 , 5</td>
+          <td>;, -75, -1, 5</td>
           <td>42</td>
-          <td>dos# , -54, -2 , 13</td>
+          <td>dos#, -54, -2, 13</td>
         </tr>
         <tr>
           <td>18</td>
-          <td>logico, -14, -1 , 6</td>
+          <td>logico, -14, -1, 6</td>
           <td>43</td>
-          <td>=, -26 , -1 , 13</td>
+          <td>=, -26, -1, 13</td>
         </tr>
         <tr>
           <td>19</td>
-          <td>dos#, -54 , -2 , 6</td>
+          <td>dos#, -54, -2, 6</td>
           <td>44</td>
           <td>true, -64, -1, 13</td>
         </tr>
         <tr>
           <td>20</td>
-          <td>; , -75 , -1 , 6</td>
+          <td>;, -75, -1, 6</td>
           <td>45</td>
-          <td>; , -75, -1, 13</td>
+          <td>;, -75, -1, 13</td>
         </tr>
         <tr>
           <td>21</td>
-          <td>inicio , -2, -1,7</td>
+          <td>inicio, -2, -1, 7</td>
           <td>46</td>
-          <td>Fin, -3,-1,14</td>
+          <td>Fin, -3, -1, 14</td>
         </tr>
         <tr>
           <td>22</td>
-          <td>a& , -51, -2 , 8</td>
+          <td>a&, -51, -2, 8</td>
           <td>47</td>
+          <!--Celdas vacias-->
           <td></td>
         </tr>
         <tr>
           <td>23</td>
-          <td>=, -26 , -1 , 8</td>
+          <td>=, -26, -1, 8</td>
           <td>48</td>
+          <!--Celdas vacias-->
           <td></td>
         </tr>
         <tr>
           <td>24</td>
           <td>300, -61, -1, 8</td>
           <td>49</td>
+          <!--Celdas vacias-->
           <td></td>
         </tr>
         <tr>
           <td>25</td>
-          <td>; , -75, -1, 8</td>
+          <td>;, -75, -1, 8</td>
           <td>50</td>
+          <!--Celdas vacias-->
           <td></td>
         </tr>
       </table>
@@ -546,19 +563,19 @@
         </tr>
         <tr>
           <td>1</td>
-          <td>programa,-1,-1,1</td>
+          <td>programa, -1, -1, 1</td>
           <td>26</td>
-          <td>b&, -51, -1 , 9</td>
+          <td>b&, -51, -1, 9</td>
         </tr>
         <tr>
           <td>2</td>
-          <td>uno@,-55, 0 ,1</td>
+          <td>uno@, -55, 0, 1</td>
           <td>27</td>
-          <td>=, -26 , -1 , 9</td>
+          <td>=, -26, -1, 9</td>
         </tr>
         <tr>
           <td>3</td>
-          <td>; , -75 , -1 , 1</td>
+          <td>;, -75, -1, 1</td>
           <td>28</td>
           <td>0, -61, -1, 9</td>
         </tr>
@@ -566,132 +583,136 @@
           <td>4</td>
           <td>variables, -15, -1, 2</td>
           <td>29</td>
-          <td>; , -75, -1, 9</td>
+          <td>;, -75, -1, 9</td>
         </tr>
         <tr>
           <td>5</td>
           <td>entero, -11, -1, 3</td>
           <td>30</td>
-          <td>z$, -53, 4 , 10</td>
+          <td>z$, -53, 4, 10</td>
         </tr>
         <tr>
           <td>6</td>
-          <td>a&, -51, 0 , 3</td>
+          <td>a&, -51, 0, 3</td>
           <td>31</td>
-          <td>= , -26 , -1 , 10</td>
+          <td>=, -26, -1, 10</td>
         </tr>
         <tr>
           <td>7</td>
-          <td>, , -76 , -1 , 3</td>
+          <td>,, -76, -1, 3</td>
           <td>32</td>
           <td>“Hola”, -63, -1, 10</td>
         </tr>
         <tr>
           <td>8</td>
-          <td>b& , -51 , 1 , 3</td>
+          <td>b&, -51, 1, 3</td>
           <td>33</td>
-          <td>; , -75, -1, 10</td>
+          <td>;, -75, -1, 10</td>
         </tr>
         <tr>
           <td>9</td>
-          <td>; , -75 , -1 , 3</td>
+          <td>;, -75, -1, 3</td>
           <td>34</td>
-          <td>x% , -52, 2 , 11</td>
+          <td>x%, -52, 2, 11</td>
         </tr>
         <tr>
           <td>10</td>
-          <td>real, -12, -1 , 4</td>
+          <td>real, -12, -1, 4</td>
           <td>35</td>
-          <td>= , -26 , -1 , 11</td>
+          <td>=, -26, -1, 11</td>
         </tr>
         <tr>
           <td>11</td>
-          <td>x%,-52, 2 , 4</td>
+          <td>x%, -52, 2, 4</td>
           <td>36</td>
           <td>45.5, -62, -1, 11</td>
         </tr>
         <tr>
           <td>12</td>
-          <td>, , -76 , -1 , 4</td>
+          <td>,, -76, -1, 4</td>
           <td>37</td>
-          <td>; , -75, -1, 11</td>
+          <td>;, -75, -1, 11</td>
         </tr>
         <tr>
           <td>13</td>
-          <td>y%, -52, 3 , 4</td>
+          <td>y%, -52, 3, 4</td>
           <td>38</td>
-          <td>y%, -52, 3 , 12</td>
+          <td>y%, -52, 3, 12</td>
         </tr>
         <tr>
           <td>14</td>
-          <td>; , -75, -1, 4</td>
+          <td>;, -75, -1, 4</td>
           <td>39</td>
-          <td>= ,-26 , -1 , 12</td>
+          <td>=, -26, -1, 12</td>
         </tr>
         <tr>
           <td>15</td>
-          <td>cadena, -13, -1 , 5</td>
+          <td>cadena, -13, -1, 5</td>
           <td>40</td>
           <td>6.6, -62, -1, 12</td>
         </tr>
         <tr>
           <td>16</td>
-          <td>z$, -53 , 4 , 5</td>
+          <td>z$, -53, 4, 5</td>
           <td>41</td>
-          <td>; , -75, -1, 12</td>
+          <td>;, -75, -1, 12</td>
         </tr>
         <tr>
           <td>17</td>
-          <td>; , -75 , -1 , 5</td>
+          <td>;, -75, -1, 5</td>
           <td>42</td>
-          <td>dos# , -54, 5 , 13</td>
+          <td>dos#, -54, 5, 13</td>
         </tr>
         <tr>
           <td>18</td>
-          <td>logico, -14, -1 , 6</td>
+          <td>logico, -14, -1, 6</td>
           <td>43</td>
-          <td>=, -26 , -1 , 13</td>
+          <td>=, -26, -1, 13</td>
         </tr>
         <tr>
           <td>19</td>
-          <td>dos#, -54 , 5 , 6</td>
+          <td>dos#, -54, 5, 6</td>
           <td>44</td>
           <td>true, -64, -1, 13</td>
         </tr>
         <tr>
           <td>20</td>
-          <td>; , -75 , -1 , 6</td>
+          <td>;, -75, -1, 6</td>
           <td>45</td>
-          <td>; , -75, -1, 13</td>
+          <td>;, -75, -1, 13</td>
         </tr>
         <tr>
           <td>21</td>
-          <td>inicio , -2, -1,7</td>
+          <td>inicio, -2, -1, 7</td>
           <td>46</td>
-          <td>Fin, -3,-1,14</td>
+          <td>Fin, -3, -1, 14</td>
         </tr>
         <tr>
           <td>22</td>
-          <td>a& , -51, 0 , 8</td>
+          <td>a&, -51, 0, 8</td>
           <td>47</td>
+          <!--Celdas vacias-->
           <td></td>
         </tr>
         <tr>
           <td>23</td>
-          <td>=, -26 , -1 , 8</td>
+          <td>=, -26, -1, 8</td>
           <td>48</td>
+          <!--Celdas vacias-->
           <td></td>
         </tr>
         <tr>
           <td>24</td>
           <td>300, -61, -1, 8</td>
           <td>49</td>
+          <!--Celdas vacias-->
           <td></td>
         </tr>
         <tr>
           <td>25</td>
-          <td>; , -75, -1, 8</td>
+          <td>;, -75, -1, 8</td>
           <td>50</td>
+          <!--Celdas vacias-->
           <td></td>
         </tr>
       </table>
