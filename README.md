@@ -42,5 +42,145 @@
     <p>
       El conjunto de datos de entrada no debe presentar errores (léxicos, sintácticos ni semánticos). La salida será el VCI generado de manera correcta que se desplegará en pantalla y se almacenará en un archivo de texto etiquetado VCI.
     </p>
+    <!--Ejemplo-->
+    <h3>Ejemplo</h3>
+    <h3>Entrada:</h3>
+    <h3>Tabla de tokens</h3>
+    <table>
+      <tr>
+        <td>TOKENS</td>
+        <td>TOKENS</td>
+      </tr>
+      <tr>
+        <td>programa,-1,-1,1</td>
+        <td>b&,-51,1,9</td>
+      </tr>
+      <tr>
+        <td>uno@,-55, 0 ,1</td>
+        <td>=, -26 , -1 , 9</td>
+      </tr>
+      <tr>
+        <td>; , -75 , -1 , 1</td>
+        <td>0, -61, -1, 9</td>
+      </tr>
+      <tr>
+        <td>variables, -15, -1, 2</td>
+        <td>; , -75, -1, 9</td>
+      </tr>
+      <tr>
+        <td>entero, -11, -1, 3</td>
+        <td>z$, -53, 4, 10</td>
+      </tr>
+      <tr>
+        <td>a&, -51, 0 , 3</td>
+        <td>= , -26 , -1 , 10</td>
+      </tr>
+      <tr>
+        <td>, , -76 , -1 , 3</td>
+        <td>“Hola”, -63, -1, 10</td>
+      </tr>
+      <tr>
+        <td>b& , -51 , 1 , 3</td>
+        <td>; , -75, -1, 10</td>
+      </tr>
+      <tr>
+        <td>; , -75 , -1 , 3</td>
+        <td>x% , -52, 2, 11</td>
+      </tr>
+      <tr>
+        <td>real, -12, -1 , 4</td>
+        <td>= , -26 , -1 , 11</td>
+      </tr>
+      <tr>
+        <td>x%,-52, 2 , 4</td>
+        <td>45.5, -62, -1, 11</td>
+      </tr>
+      <tr>
+        <td>, , -76 , -1 , 4</td>
+        <td>; , -75, -1, 11</td>
+      </tr>
+      <tr>
+        <td>y%, -52, 3 , 4</td>
+        <td>y%, -52, 3, 12</td>
+      </tr>
+      <tr>
+        <td>; , -75, -1, 4</td>
+        <td>= ,-26 , -1 , 12</td>
+      </tr>
+      <tr>
+        <td>cadena, -13, -1 , 5</td>
+        <td>6.6, -62, -1, 12</td>
+      </tr>
+      <tr>
+        <td>z$, -53 , 4 , 5</td>
+        <td>; , -75, -1, 12</td>
+      </tr>
+      <tr>
+        <td>; , -75 , -1 , 5</td>
+        <td>dos#, -54, 5, 13</td>
+      </tr>
+      <tr>
+        <td>logico, -14, -1 , 6</td>
+        <td>=, -26 , -1 , 13</td>
+      </tr>
+      <tr>
+        <td>dos#, -54 , 5 , 6</td>
+        <td>true, -64, -1, 13</td>
+      </tr>
+      <tr>
+        <td>; , -75 , -1 , 6</td>
+        <td>; , -75, -1, 13</td>
+      </tr>
+      <tr>
+        <td>inicio , -2, -1,7</td>
+        <td>Fin, -3,-1,14</td>
+      </tr>
+      <tr>
+        <td>a& , -51, 0 , 8</td>
+      </tr>
+      <tr>
+        <td>=, -26 , -1 , 8</td>
+      </tr>
+      <tr>
+       <td>300, -61, -1, 8</td> 
+      </tr>
+      <tr>
+        <td>; , -75, -1, 8</td>
+      </tr>
+    </table>
+    <h3>Salida:</h3>
+    <h3>Vector de código intermedio (TABLA ) considerando tabla de TOKENS</h3>
+    <table>
+      <tr>
+        <td>a& , -51, 0 , 8</td>
+      </tr>
+      <tr>
+        <td>300, -61, -1, 8</td>
+      </tr>
+      <tr>
+        <td>=, -26 , -1 , 8</td>
+      </tr>
+      <tr>
+        <td>b&, -51, 1 , 9</td>
+      </tr>
+      <tr>
+        <td>0, -61, -1, 9</td>
+      </tr>
+      <tr>
+        <td>=, -26 , -1 , 9</td>
+      </tr>
+      <tr>
+        <td>z$, -53, 4, 10</td>
+      </tr>
+      <tr>
+        <td>“Hola”, -63, -1, 10</td>
+      </tr>
+      <tr>
+        <td>= , -26 , -1 , 10</td>
+      </tr>
+      <tr>
+        <td>…. etc</td>
+      </tr>
+    </table>
   </div>
 </div>
