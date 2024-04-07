@@ -54,15 +54,15 @@
       <b>Linea</b>: el numero de linea en el programa fuente<br>
     </p>
     <p>
-      El programa o aplicación deberá leer la tabla de tokens al inicio y mostrar al final la tabla con los datos de “posición en tabla” modificados así como generar la tabla de símbolos y tabla de direcciones correspondiente, archivo que se podrá leer desde consola al finalizar la ejecución de la aplicación con la siguiente estructura:
+      El programa o aplicación deberá leer la tabla de tokens al inicio y mostrar al final la tabla con los datos de <b>“posición en tabla” modificados</b> así como generar la tabla de símbolos y tabla de direcciones correspondiente, archivo que se podrá leer desde consola al finalizar la ejecución de la aplicación con la siguiente estructura:
     </p>
     <h3>TABLA DE SIMBOLOS</h3>
     <div>
       <table>
-        <td>ID</td>
-        <td>Token</td>
-        <td>Valor</td>
-        <td>Ambito</td>
+        <th>ID</th>
+        <th>Token</th>
+        <th>Valor</th>
+        <th>Ambito</th>
       </table>
     </div>
     <p>
@@ -71,16 +71,16 @@
     <p>
       <b>ID</b>: identificador en el programa fuente
       <b>Token</b>: NUMERO DE TOKEN de acuerdo a LEXICO
-      <b>Valor</b>: asignar de acuerdo al tipo de dato , si es entero 0, si es real 0.0 si es constante string null y si es lógico true
+      <b>Valor</b>: <b>asignar de acuerdo al tipo de dato</b>, si es entero 0, si es real 0.0 si es constante string null y si es lógico true
       <b>Ambito</b>: main si pertenece al programa principal, o nombre del procedimiento o función si pertenece a algún método
     </p>
     <h3>TABLA DE DIRECCIONES</h3>
     <div>
       <table>
-        <td>ID</td>
-        <td>Token</td>
-        <td>No. Linea</td>
-        <td>VCI</td>
+        <th>ID</th>
+        <th>Token</th>
+        <th>No. Linea</th>
+        <th>VCI</th>
       </table>
     </div>
     <p>
@@ -90,19 +90,19 @@
       <b>ID</b>: identificador en el programa fuente<br>
       <b>Token</b>: NUMERO DE TOKEN de acuerdo a LEXICO<br>
       <b>No. Linea</b>: numero de linea donde se encuentra el token<br>
-      <b>VCI</b>: campo que se modificara en cuando se genere VCI , por default es 0<br>
+      <b>VCI</b>: campo que se modificara en cuando se genere VCI , <b>por default es 0</b>
     </p>
     <p>
-      Considere lo siguiente para la identificación de TOKENS - LEXICO de lenguaje de prueba
+      Considere lo siguiente para la identificación de TOKENS - <b>LEXICO de lenguaje de prueba</b>
     </p>
     <div>
       <table>
         <tr>
-          <td colspan="2">Palabras Reservadas</td>
-          <td colspan="2">Operadores Aritméticos/ Relacionales/ Lógicos</td>
-          <td colspan="2">Identificadores</td>
-          <td colspan="2">Constantes</td>
-          <td colspan="2">Caracteres</td>
+          <th colspan="2">Palabras Reservadas</th>
+          <th colspan="2">Operadores Aritméticos/ Relacionales/ Lógicos</th>
+          <th colspan="2">Identificadores</th>
+          <th colspan="2">Constantes</th>
+          <th colspan="2">Caracteres</th>
         </tr>
         <tr>
           <td>programa</td>
