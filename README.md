@@ -13,8 +13,15 @@
 </div>
 
 <!--Titulo de Practicas-->
-<div>
-  <h2 style="display: inline-block">Practica 1 Analisis semantico</h2>
+<div id="user-content-toc">
+  <ul align="rigth" >
+    <summary>
+      <!--Titulo-->
+      <h2 style="display: inline-block">Practica 1 Analisis semantico</h2>
+      <!--Divizor horizontal (gradiant)-->
+      <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
+    </summary>
+  </ul>
   <div>
     <!--Objetivo-->
     <h3>Objetivo:</h3>
