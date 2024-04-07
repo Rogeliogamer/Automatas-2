@@ -38,10 +38,10 @@
     </p>
     <div>
     <table>
-      <td>Lexema</td>
-      <td>Token</td>
-      <td>Posición Tabla</td>
-      <td>Linea</td>
+      <th>Lexema</th>
+      <th>Token</th>
+      <th>Posición Tabla</th>
+      <th>Linea</th>
     </table>
     </div>
     <p>
