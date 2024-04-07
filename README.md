@@ -511,6 +511,23 @@
         </tr>
       </table> 
     </div>
+    <h3>EJEMPLO Tabla de direcciones</h3>
+    <div>
+      <table>
+        <tr>
+          <th>ID</th>
+          <th>TOKEN</th>
+          <th>No. Linea</th>
+          <th>VCI</th>
+        </tr>
+        <tr>
+          <td>uno@</td>
+          <td>-55</td>
+          <td>1</td>
+          <td>0</td>
+        </tr>
+      </table>
+    </div>
   </div>
   
   <h2 style="display: inline-block">Practica 2 Vector de codigo intermedio</h2>
