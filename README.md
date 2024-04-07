@@ -69,10 +69,10 @@
       Donde:
     </p>
     <p>
-      <b>ID</b>: identificador en el programa fuente
-      <b>Token</b>: NUMERO DE TOKEN de acuerdo a LEXICO
-      <b>Valor</b>: <b>asignar de acuerdo al tipo de dato</b>, si es entero 0, si es real 0.0 si es constante string null y si es lógico true
-      <b>Ambito</b>: main si pertenece al programa principal, o nombre del procedimiento o función si pertenece a algún método
+      <b>ID</b>: identificador en el programa fuente<br>
+      <b>Token</b>: NUMERO DE TOKEN de acuerdo a LEXICO<br>
+      <b>Valor</b>: <b>asignar de acuerdo al tipo de dato</b>, si es entero 0, si es real 0.0 si es constante string null y si es lógico true<br>
+      <b>Ambito</b>: main si pertenece al programa principal, o nombre del procedimiento o función si pertenece a algún método<br>
     </p>
     <h3>TABLA DE DIRECCIONES</h3>
     <div>
