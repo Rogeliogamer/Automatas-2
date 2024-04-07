@@ -21,7 +21,7 @@
     <p>
       El alumno generara la tabla de símbolos y de direcciones de un lenguaje de prueba utilizando el lenguaje de programación JAVA o herramienta
     </p>
-    <!--Desarollo-->
+    <!--Desarrollo-->
     <h3>Desarrollo:</h3>
     <p>
       Realice una aplicación utilizando su lenguaje de programación Java o herramienta y genere dos archivos externos – Tabla de símbolos y tabla de direcciones para un   lenguaje de prueba.
