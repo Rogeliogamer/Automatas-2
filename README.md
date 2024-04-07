@@ -12,5 +12,8 @@
   </ul>
 </div>
 
-Practica 1 Analisis semantico
-Practica 2 Vector de codigo intermedio
+<!--Titulo de Practicas-->
+<div>
+  <h2 style="display: inline-block">Practica 1 Analisis semantico</h2>
+  <h2 style="display: inline-block">Practica 2 Vector de codigo intermedio</h2>
+</div>
