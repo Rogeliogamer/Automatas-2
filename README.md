@@ -34,5 +34,13 @@
     <p>
       El alumno aplica los conceptos asociados para la obtención del Vector de código intermedio en expresiones aritméticas/lógica/relacionales y estructuras de control (condicional , repetición) simulando su proceso utilizando lenguaje de programación JAVA.
     </p>
+    <!--Desarrollo-->
+    <h3>Desarrollo:</h3>
+    <p>
+      Considerando la tabla de tokens que obtuvo como salida en la practica anterior genere una aplicación que permita simular el proceso de obtención del vector de código intermedio para un conjunto de codigo que incluya expresiones aritméticas/lógicas/relacionales (cualquiera), estructuras de control (condicional, repetir, mientras), considere operadores y prioridades vistas en clase, incluya prioridad para paréntesis y utilice las pilas correspondientes (operadores, estatutos, direcciones). INCLUYA diseño lógico de la aplicación o programa en el reporte y considere manejo de errores, etapas de desarrollo de software, considere metodología de diseño para la aplicación o programa acorde al paradigma del lenguaje.
+    </p>
+    <p>
+      El conjunto de datos de entrada no debe presentar errores (léxicos, sintácticos ni semánticos). La salida será el VCI generado de manera correcta que se desplegará en pantalla y se almacenará en un archivo de texto etiquetado VCI.
+    </p>
   </div>
 </div>
