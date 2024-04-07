@@ -26,7 +26,71 @@
     <p>
       Realice una aplicación utilizando su lenguaje de programación Java o herramienta y genere dos archivos externos – Tabla de símbolos y tabla de direcciones para un   lenguaje de prueba.
     </p>
+    <p>
+      Suponga que ya existe la tabla de TOKENS con la siguiente estructura:
+    </p>
+    <div>
+    <table>
+      <td>Lexema</td>
+      <td>Token</td>
+      <td>Posición Tabla</td>
+      <td>Linea</td>
+    </table>
+    </div>
+    <p>
+      Donde:
+    </p>
+    <p>
+      <b>Lexema</b>: el valor asociado al token en el programa fuente<br>
+      <b>Token</b>: el numero de token asignado<br>
+      <b>Posición Tabla</b>: posición en la tabla de símbolos, donde -1 indica que no va en tabla de símbolos y -2 si se agrega a tabla de símbolos o de direcciones<br>
+      <b>Linea</b>: el numero de linea en el programa fuente<br>
+    </p>
+    <p>
+      El programa o aplicación deberá leer la tabla de tokens al inicio y mostrar al final la tabla con los datos de “posición en tabla” modificados así como generar la tabla de símbolos y tabla de direcciones correspondiente, archivo que se podrá leer desde consola al finalizar la ejecución de la aplicación con la siguiente estructura:
+    </p>
+    <h3>TABLA DE SIMBOLOS</h3>
+    <div>
+      <table>
+        <td>ID</td>
+        <td>Token</td>
+        <td>Valor</td>
+        <td>Ambito</td>
+      </table>
+    </div>
+    <p>
+      Donde:
+    </p>
+    <p>
+      <b>ID</b>: identificador en el programa fuente
+      <b>Token</b>: NUMERO DE TOKEN de acuerdo a LEXICO
+      <b>Valor</b>: asignar de acuerdo al tipo de dato , si es entero 0, si es real 0.0 si es constante string null y si es lógico true
+      <b>Ambito</b>: main si pertenece al programa principal, o nombre del procedimiento o función si pertenece a algún método
+    </p>
+    <h3>TABLA DE DIRECCIONES</h3>
+    <div>
+      <table>
+        <td>ID</td>
+        <td>Token</td>
+        <td>No. Linea</td>
+        <td>VCI</td>
+      </table>
+    </div>
+    <p>
+      Donde:
+    </p>
+    <p>
+      <b>ID</b>: identificador en el programa fuente<br>
+      <b>Token</b>: NUMERO DE TOKEN de acuerdo a LEXICO<br>
+      <b>No. Linea</b>: numero de linea donde se encuentra el token<br>
+      <b>VCI</b>: campo que se modificara en cuando se genere VCI , por default es 0<br>
+    </p>
+    <p>
+      Considere lo siguiente para la identificación de TOKENS - LEXICO de lenguaje de prueba
+    </p>
+    
   </div>
+  
   <h2 style="display: inline-block">Practica 2 Vector de codigo intermedio</h2>
   <div>
     <!--Objetivo-->
