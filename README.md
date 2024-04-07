@@ -15,5 +15,11 @@
 <!--Titulo de Practicas-->
 <div>
   <h2 style="display: inline-block">Practica 1 Analisis semantico</h2>
+  <div>
+    <h3>Objetivo:</h3>
+    <p>
+      El alumno generara la tabla de símbolos y de direcciones de un lenguaje de prueba utilizando el lenguaje de programación JAVA o herramienta
+    </p>
+  </div>
   <h2 style="display: inline-block">Practica 2 Vector de codigo intermedio</h2>
 </div>
