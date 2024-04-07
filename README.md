@@ -28,4 +28,11 @@
     </p>
   </div>
   <h2 style="display: inline-block">Practica 2 Vector de codigo intermedio</h2>
+  <div>
+    <!--Objetivo-->
+    <h3>Objetivo:</h3>
+    <p>
+      El alumno aplica los conceptos asociados para la obtención del Vector de código intermedio en expresiones aritméticas/lógica/relacionales y estructuras de control (condicional , repetición) simulando su proceso utilizando lenguaje de programación JAVA.
+    </p>
+  </div>
 </div>
