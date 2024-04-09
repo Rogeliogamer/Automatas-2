@@ -197,6 +197,9 @@ public class Vector_Código_Intermedio {
                     case "/":
                         verificarExistencia("/", linea);
                         break;
+                    case "%":
+                        verificarExistencia("%", linea);
+                        break;
                     case "+":
                         verificarExistencia("+", linea);
                         break;
@@ -349,7 +352,7 @@ public class Vector_Código_Intermedio {
     
     public static void verificarExistencia(String temporal, String token)
     {
-        String [] prioridad_60 = new String [] {"*", "/"};
+        String [] prioridad_60 = new String [] {"*", "/", "%"};
         String [] prioridad_50 = new String [] {"+", "-"};
         String [] prioridad_40 = new String [] {"<", ">", "<=", ">=", "=="};
         String [] prioridad_30 = new String [] {"not"};
