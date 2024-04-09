@@ -221,6 +221,9 @@ public class Vector_Código_Intermedio {
                     case "==":
                         verificarExistencia("==", linea);
                         break;
+                    case "!=":
+                        verificarExistencia("!=", linea);
+                        break;
                     case "not":
                         verificarExistencia("not", linea);
                         break;
@@ -354,7 +357,7 @@ public class Vector_Código_Intermedio {
     {
         String [] prioridad_60 = new String [] {"*", "/", "%"};
         String [] prioridad_50 = new String [] {"+", "-"};
-        String [] prioridad_40 = new String [] {"<", ">", "<=", ">=", "=="};
+        String [] prioridad_40 = new String [] {"<", ">", "<=", ">=", "==", "!="};
         String [] prioridad_30 = new String [] {"not"};
         String [] prioridad_20 = new String [] {"and"};
         String [] prioridad_10 = new String [] {"or"};
