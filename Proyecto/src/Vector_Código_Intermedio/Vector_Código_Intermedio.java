@@ -32,7 +32,7 @@ public class Vector_Código_Intermedio {
     {
         // Leer el archivo de texto línea por línea
         //try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\rogel\\OneDrive\\Escritorio\\Semestre 8\\Lenguajes Y Autómatas II\\Proyecto\\src\\Recursos\\Tabla de Tokens2.txt")))
-        try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\rogel\\OneDrive\\Escritorio\\Semestre 8\\Lenguajes Y Autómatas II\\Proyecto\\src\\Recursos\\Ejemplo4.txt")))
+        try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\rogel\\OneDrive\\Escritorio\\Semestre 8\\Lenguajes Y Autómatas II\\Proyecto\\src\\Recursos\\Ejemplo6.txt")))
         {
             String linea;
             String lineaSiguiente = null;
@@ -81,12 +81,15 @@ public class Vector_Código_Intermedio {
                         guardado = linea;
                         pilaDeEstatutos.push(linea);
                         
-                        apuntador2 = pilaDeDirecciones.pop();
-                        for (int i = 0; i < cintaDeVCI.size(); i++)
-                        {
-                            if (i == apuntador2)
+                        if (!pilaDeDirecciones.isEmpty())
+                        {   
+                            apuntador2 = pilaDeDirecciones.pop();
+                            for (int i = 0; i < cintaDeVCI.size(); i++)
                             {
-                                cintaDeVCI.set(i-1, ((apuntador + 1) + 1) + "");
+                                if (i == apuntador2)
+                                {
+                                    cintaDeVCI.set(i-1, ((apuntador + 1) + 1) + "");
+                                }
                             }
                         }
                         
@@ -100,9 +103,12 @@ public class Vector_Código_Intermedio {
                         guardado = null;
                         break;
                     case "fin":
-                        pilaDeEstatutos.pop();
+                        if (!pilaDeEstatutos.isEmpty())
+                        {
+                            pilaDeEstatutos.pop();
+                        }
                         
-                        String archivo = "C:\\Users\\rogel\\OneDrive\\Escritorio\\Semestre 8\\Lenguajes Y Autómatas II\\Proyecto\\src\\Recursos\\Ejemplo4.txt";
+                        String archivo = "C:\\Users\\rogel\\OneDrive\\Escritorio\\Semestre 8\\Lenguajes Y Autómatas II\\Proyecto\\src\\Recursos\\Ejemplo6.txt";
                         String palabraBuscada = linea;
                         try (BufferedReader br2 = new BufferedReader(new FileReader(archivo))) 
                         {
@@ -162,19 +168,22 @@ public class Vector_Código_Intermedio {
                         }
                         else if(inicio != null && "inicio".equals(inicio))
                         {
-                            int apu = pilaDeDirecciones.pop();
-                            
-                            for (int i = 0; i < cintaDeVCI.size(); i++)
+                            if (!pilaDeDirecciones.isEmpty())
                             {
-                                if (i == apu)
+                                int apu = pilaDeDirecciones.pop();
+                            
+                                for (int i = 0; i < cintaDeVCI.size(); i++)
                                 {
-                                    if ("└".equals(cintaDeVCI.get(i-2)))
+                                    if (i == apu)
                                     {
-                                        cintaDeVCI.set(i-2, apuntador + "");
-                                    }
-                                    else if ("└".equals(cintaDeVCI.get(i-1)))
-                                    {
-                                        cintaDeVCI.set(i-1, apuntador + "");
+                                        if ("└".equals(cintaDeVCI.get(i-2)))
+                                        {
+                                            cintaDeVCI.set(i-2, apuntador + "");
+                                        }
+                                        else if ("└".equals(cintaDeVCI.get(i-1)))
+                                        {
+                                            cintaDeVCI.set(i-1, apuntador + "");
+                                        }
                                     }
                                 }
                             }
@@ -267,9 +276,12 @@ public class Vector_Código_Intermedio {
                         
                         if("hasta".equals(hasta))
                         {
-                            guardado = (pilaDeDirecciones.pop() - 1) + "";
-                            cintaDeVCI.add(guardado);
-                            cintaDeVCIApuntador.add(apuntador++);
+                            if (!pilaDeDirecciones.isEmpty())
+                            {
+                                guardado = (pilaDeDirecciones.pop() - 1) + "";
+                                cintaDeVCI.add(guardado);
+                                cintaDeVCIApuntador.add(apuntador++);
+                            }
                             hasta = null;
                             guardado = null;
                             
