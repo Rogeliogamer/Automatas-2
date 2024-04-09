@@ -347,22 +347,6 @@ public class Vector_Código_Intermedio {
         leerArchivoYMostrarContenido(cintaVCI);
     }
     
-    public static void casesino(String linea)
-    {
-        String guardado = linea;
-        pilaDeEstatutos.push(linea);
-        
-        pilaDeDirecciones.pop();
-        cintaDeVCI.add((apuntador + 3) + "");
-        cintaDeVCIApuntador.add(apuntador++);
-        cintaDeVCI.add("└");
-        cintaDeVCIApuntador.add(apuntador++);
-        pilaDeDirecciones.push(apuntador + 1);
-        cintaDeVCI.add(guardado);
-        cintaDeVCIApuntador.add(apuntador++);
-        guardado = null;
-    }
-    
     public static void verificarExistencia(String temporal, String token)
     {
         String [] prioridad_60 = new String [] {"*", "/"};
