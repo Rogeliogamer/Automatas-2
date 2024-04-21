@@ -30,9 +30,10 @@ public class Vector_Código_Intermedio {
     
     public static void main (String [] args) throws IOException
     {
+        long tiempo_inicial = System.currentTimeMillis();
         // Leer el archivo de texto línea por línea
         //try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\rogel\\OneDrive\\Escritorio\\Semestre 8\\Lenguajes Y Autómatas II\\Proyecto\\src\\Recursos\\Tabla de Tokens2.txt")))
-        try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\rogel\\OneDrive\\Escritorio\\Semestre 8\\Lenguajes Y Autómatas II\\Proyecto\\src\\Recursos\\Ejemplo6.txt")))
+        try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\rogel\\OneDrive\\Escritorio\\Semestre 8\\Lenguajes Y Autómatas II\\Proyecto\\src\\Recursos\\Ejemplo4.txt")))
         {
             String linea;
             String lineaSiguiente = null;
@@ -68,7 +69,7 @@ public class Vector_Código_Intermedio {
                             cintaDeVCIApuntador.add(apuntador++);
                         }
                         
-                        pilaDeDirecciones.push(apuntador + 1);
+                        pilaDeDirecciones.push(apuntador);
                         
                         cintaDeVCI.add("└");
                         cintaDeVCIApuntador.add(apuntador++);
@@ -88,15 +89,14 @@ public class Vector_Código_Intermedio {
                             {
                                 if (i == apuntador2)
                                 {
-                                    cintaDeVCI.set(i-1, ((apuntador + 1) + 1) + "");
+                                    cintaDeVCI.set(i, (apuntador + 2) + "");
                                 }
                             }
                         }
                         
                         cintaDeVCI.add("└");
+                        pilaDeDirecciones.push(apuntador);
                         cintaDeVCIApuntador.add(apuntador++);
-                        
-                        pilaDeDirecciones.push(apuntador + 1);
                         
                         cintaDeVCI.add(guardado);
                         cintaDeVCIApuntador.add(apuntador++);
@@ -108,7 +108,7 @@ public class Vector_Código_Intermedio {
                             pilaDeEstatutos.pop();
                         }
                         
-                        String archivo = "C:\\Users\\rogel\\OneDrive\\Escritorio\\Semestre 8\\Lenguajes Y Autómatas II\\Proyecto\\src\\Recursos\\Ejemplo6.txt";
+                        String archivo = "C:\\Users\\rogel\\OneDrive\\Escritorio\\Semestre 8\\Lenguajes Y Autómatas II\\Proyecto\\src\\Recursos\\Ejemplo4.txt";
                         String palabraBuscada = linea;
                         try (BufferedReader br2 = new BufferedReader(new FileReader(archivo))) 
                         {
@@ -149,7 +149,8 @@ public class Vector_Código_Intermedio {
                                 {
                                     if (i == apuntador2)
                                     {
-                                        cintaDeVCI.set(i-1, ((apuntador + 1) + 1) + "");
+                                        cintaDeVCI.set(i, (apuntador + 2) + "");
+                                        break;
                                     }
                                 }
                             }
@@ -157,7 +158,7 @@ public class Vector_Código_Intermedio {
                             if (!pilaDeDirecciones.isEmpty())
                             {
                                 apuntador2 = pilaDeDirecciones.pop();
-                                cintaDeVCI.add((apuntador2 - 1) + "");
+                                cintaDeVCI.add((apuntador2) + "");
                                 cintaDeVCIApuntador.add(apuntador++);
                             }
                             
@@ -183,6 +184,10 @@ public class Vector_Código_Intermedio {
                                         else if ("└".equals(cintaDeVCI.get(i-1)))
                                         {
                                             cintaDeVCI.set(i-1, apuntador + "");
+                                        }
+                                        else if ("└".equals(cintaDeVCI.get(i)))
+                                        {
+                                            cintaDeVCI.set(i, apuntador + "");
                                         }
                                     }
                                 }
@@ -238,7 +243,7 @@ public class Vector_Código_Intermedio {
                         break;
                     case "repetir":
                         pilaDeEstatutos.push(linea);
-                        pilaDeDirecciones.push(apuntador + 1);
+                        pilaDeDirecciones.push(apuntador);
                         break;
                     case "hasta":
                         hasta = palabra;
@@ -284,7 +289,7 @@ public class Vector_Código_Intermedio {
                         {
                             if (!pilaDeDirecciones.isEmpty())
                             {
-                                guardado = (pilaDeDirecciones.pop() - 1) + "";
+                                guardado = (pilaDeDirecciones.pop()) + "";
                                 cintaDeVCI.add(guardado);
                                 cintaDeVCIApuntador.add(apuntador++);
                             }
@@ -304,7 +309,7 @@ public class Vector_Código_Intermedio {
                         break;
                     case "mientras":
                         pilaDeEstatutos.push(linea);
-                        pilaDeDirecciones.push(apuntador + 1);
+                        pilaDeDirecciones.push(apuntador);
                         mientras = "mientras";
                         break;
                     case "hacer":
@@ -319,9 +324,8 @@ public class Vector_Código_Intermedio {
                         }
                         
                         cintaDeVCI.add("└");
-                        cintaDeVCIApuntador.add(apuntador++);
-                        
                         pilaDeDirecciones.push(apuntador);
+                        cintaDeVCIApuntador.add(apuntador++);
                         
                         cintaDeVCI.add(linea);
                         cintaDeVCIApuntador.add(apuntador++);
@@ -351,6 +355,10 @@ public class Vector_Código_Intermedio {
         guardarArrayListsEnArchivo(cintaDeVCI, cintaDeVCIApuntador, cintaVCI);
         // Leemos y mostramos el contenido del archivo de texto
         leerArchivoYMostrarContenido(cintaVCI);
+        
+        long tiempo_final = System.currentTimeMillis() - tiempo_inicial;
+        double tiempo_en_segundos = tiempo_final / 1000.0; // Convertir a segundos
+        System.out.println("El tiempo total fue de " + tiempo_en_segundos + " segundos");
     }
     
     public static void verificarExistencia(String temporal, String token)

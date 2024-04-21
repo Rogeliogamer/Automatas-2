@@ -13,7 +13,7 @@ import java.util.Stack;
  *
  * @author Rogelio Perez Guevara
  * @author Equipo 2
- * @version 25/03/2024
+ * @version 04/04/2024
  */
 public class VCI_si_entonces_sino_fin {
     public static Stack<String> pilaDeOperadores = new Stack<>();
@@ -149,7 +149,7 @@ public class VCI_si_entonces_sino_fin {
                             cintaDeVCIApuntador.add(apuntador++);
                         }
                         
-                        pilaDeDirecciones.push(apuntador + 1);
+                        pilaDeDirecciones.push(apuntador); //*Quitar el mas 1
                         
                         cintaDeVCI.add("└");
                         cintaDeVCIApuntador.add(apuntador++);
@@ -207,7 +207,7 @@ public class VCI_si_entonces_sino_fin {
                         else if(inicio != null)
                         {
                             int apu = pilaDeDirecciones.pop();
-                            cintaDeVCI.set((apu-1), (apuntador) + "");
+                            cintaDeVCI.set((apu), (apuntador) + ""); //*Quitar el - 1
                             inicio = null;
                             break;
                         }

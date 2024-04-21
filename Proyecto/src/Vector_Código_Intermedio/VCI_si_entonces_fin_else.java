@@ -66,7 +66,7 @@ public class VCI_si_entonces_fin_else {
                             cintaDeVCIApuntador.add(apuntador++);
                         }
                         
-                        pilaDeDirecciones.push(apuntador + 1);
+                        pilaDeDirecciones.push(apuntador);
                         
                         cintaDeVCI.add("└");
                         cintaDeVCIApuntador.add(apuntador++);
@@ -84,14 +84,14 @@ public class VCI_si_entonces_fin_else {
                         {
                             if (i == apuntador2)
                             {
-                                cintaDeVCI.set(i-1, ((apuntador + 1) + 1) + "");
+                                cintaDeVCI.set(i, (apuntador + 2) + ""); //*Quitar el - 1 y el +1 +1 por un +2
+                                break; //*Salir cunado se cumpla la condicion
                             }
                         }
                         
                         cintaDeVCI.add("└");
+                        pilaDeDirecciones.push(apuntador); //*Va con el token falso y se quita el +1
                         cintaDeVCIApuntador.add(apuntador++);
-                        
-                        pilaDeDirecciones.push(apuntador + 1);
                         
                         cintaDeVCI.add(guardado);
                         cintaDeVCIApuntador.add(apuntador++);
@@ -152,7 +152,7 @@ public class VCI_si_entonces_fin_else {
                         else if(inicio != null)
                         {
                             int apu = pilaDeDirecciones.pop();
-                            cintaDeVCI.set((apu-2), (apuntador) + "");
+                            cintaDeVCI.set((apu), (apuntador) + ""); //*Quitar el -2
                             inicio = null;
                             break;
                         }

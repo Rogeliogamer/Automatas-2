@@ -171,7 +171,7 @@ public class VCI_repetir_hasta_fin {
                         break;
                     case "repetir":
                         pilaDeEstatutos.push(linea);
-                        pilaDeDirecciones.push(apuntador + 1);
+                        pilaDeDirecciones.push(apuntador); //*Quitar mas 1
                         break;
                     case "hasta":
                         hasta = palabra;
@@ -214,7 +214,7 @@ public class VCI_repetir_hasta_fin {
                         
                         if("hasta".equals(hasta))
                         {
-                            guardado = (pilaDeDirecciones.pop() - 1) + "";
+                            guardado = (pilaDeDirecciones.pop()) + ""; //*Quitar el -1
                             cintaDeVCI.add(guardado);
                             cintaDeVCIApuntador.add(apuntador++);
                             hasta = null;

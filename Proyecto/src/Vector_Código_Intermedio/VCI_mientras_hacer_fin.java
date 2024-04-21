@@ -99,7 +99,8 @@ public class VCI_mientras_hacer_fin {
                                 {
                                     if (i == apuntador2)
                                     {
-                                        cintaDeVCI.set(i-1, ((apuntador + 1) + 1) + "");
+                                        cintaDeVCI.set(i, (apuntador + 2) + ""); //*Quitar el -1 y cambiar el +1 +1 por +2
+                                        break; //*Salir cuando se cumplan las condiciones
                                     }
                                 }
                             }
@@ -107,7 +108,7 @@ public class VCI_mientras_hacer_fin {
                             if (!pilaDeDirecciones.isEmpty())
                             {
                                 apuntador2 = pilaDeDirecciones.pop();
-                                cintaDeVCI.add((apuntador2 - 1) + "");
+                                cintaDeVCI.add((apuntador2) + ""); //*Quitar el -1
                                 cintaDeVCIApuntador.add(apuntador++);
                             }
                             
@@ -233,7 +234,7 @@ public class VCI_mientras_hacer_fin {
                         break;
                     case "mientras":
                         pilaDeEstatutos.push(linea);
-                        pilaDeDirecciones.push(apuntador + 1);
+                        pilaDeDirecciones.push(apuntador); //*Quitar el +1
                         mientras = "mientras";
                         break;
                     case "hacer":
@@ -248,9 +249,8 @@ public class VCI_mientras_hacer_fin {
                         }
                         
                         cintaDeVCI.add("└");
+                        pilaDeDirecciones.push(apuntador); //*Va con el token falso
                         cintaDeVCIApuntador.add(apuntador++);
-                        
-                        pilaDeDirecciones.push(apuntador);
                         
                         cintaDeVCI.add(linea);
                         cintaDeVCIApuntador.add(apuntador++);
