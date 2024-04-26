@@ -8,6 +8,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Stack;
+import java.util.Scanner;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
 
 /**
  *
@@ -42,7 +47,8 @@ public class Vector_Código_Intermedio2 {
             String temporal = null;
             String token = null;
             String hasta = null;
-            String inicio = null;
+            String sino = null;
+            ArrayList<String> inicio = new ArrayList<>();
             ArrayList<String> mientras = new ArrayList<>();
             int apuntador2;
             String resultado = null;
@@ -82,7 +88,8 @@ public class Vector_Código_Intermedio2 {
                             pilaDeDirecciones.push(apuntador);
 
                             cintaDeVCI.add("└");
-                            cintaDeVCIApuntador.add(apuntador++);
+                            cintaDeVCIApuntador.add(apuntador);
+                            apuntador++;
 
                             cintaDeVCI.add(guardado);
                             cintaDeVCIApuntador.add(apuntador++);
@@ -90,6 +97,8 @@ public class Vector_Código_Intermedio2 {
                             break;
                         case "-7":
                             guardado = linea;
+                            sino = "sino";
+                            
                             pilaDeEstatutos.push(linea);
 
                             if (!pilaDeDirecciones.isEmpty())
@@ -100,6 +109,7 @@ public class Vector_Código_Intermedio2 {
                                     if (i == apuntador2)
                                     {
                                         cintaDeVCI.set(i, (apuntador + 2) + "");
+                                        break;
                                     }
                                 }
                             }
@@ -150,7 +160,7 @@ public class Vector_Código_Intermedio2 {
                             {
                                 break;
                             }
-                            else if (mientras.contains("mientras"))
+                            else if (!mientras.isEmpty() && "mientras".equals(mientras.get(mientras.size() - 1)) && sino == null)
                             {
                                 if (!pilaDeDirecciones.isEmpty())
                                 {
@@ -174,12 +184,13 @@ public class Vector_Código_Intermedio2 {
 
                                 cintaDeVCI.add("fin-mientras");
                                 cintaDeVCIApuntador.add(apuntador++);
-                                inicio = null;
+                                mientras.remove("inicio");
                                 mientras.remove("mientras");
                                 break;
                             }
-                            else if(inicio != null && "inicio".equals(inicio))
+                            else if(!inicio.isEmpty() && "inicio".equals(inicio.get(inicio.size() - 1)))
                             {
+                                sino = null;
                                 if (!pilaDeDirecciones.isEmpty())
                                 {
                                     int apu = pilaDeDirecciones.pop();
@@ -203,7 +214,7 @@ public class Vector_Código_Intermedio2 {
                                         }
                                     }
                                 }
-                                inicio = null;
+                                mientras.remove("inicio");
                                 break;
                             }
                             break;
@@ -259,7 +270,7 @@ public class Vector_Código_Intermedio2 {
                         case "-10":
                             hasta = palabra2;
                             temporal = linea;
-                            inicio = null;
+                            mientras.remove("inicio");
                             break;
                         case "-73":
                             pilaDeOperadores.push(palabra2);
@@ -316,7 +327,7 @@ public class Vector_Código_Intermedio2 {
                             }
                             break;
                         case "-2":
-                            inicio = "inicio";
+                            inicio.add("inicio");
                             break;
                         case "-8":
                             pilaDeEstatutos.push(linea);
@@ -366,7 +377,68 @@ public class Vector_Código_Intermedio2 {
         // Guardamos los ArrayLists en el archivo de texto
         guardarArrayListsEnArchivo(cintaDeVCI, cintaDeVCIApuntador, cintaVCI);
         // Leemos y mostramos el contenido del archivo de texto
-        leerArchivoYMostrarContenido(cintaVCI);
+        ArrayList<String> primeraLinea = new ArrayList<>();
+        ArrayList<String> segundaLinea = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(cintaVCI)))
+        {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                String[] partes = linea.split(" ↕ ");
+                primeraLinea.add(partes[0]);
+                segundaLinea.add(partes[1]);
+            }
+        }
+        catch (IOException e)
+        {
+            System.err.println("Error al leer el archivo: " + e.getMessage());
+            return;
+        }
+            
+        // Menú de opciones
+        Scanner scanner = new Scanner(System.in);
+        int opcion = 0;
+        while (opcion < 1 || opcion > 4)
+        {
+            System.out.println("Menú de Opciones:");
+            System.out.println("1. Cinta VCI con elementos y apuntadores (Horizontal)");
+            System.out.println("2. Cinta VCI solo con elementos (Horizontal)");
+            System.out.println("3. Cinta VCI con elementos y apuntadores (Vertical)");
+            System.out.println("4. Cinta VCI solo con elementos (Vertical)");
+            System.out.print("Ingrese el número de la opción que desea (1-4): ");
+            if (scanner.hasNextInt())
+            {
+                opcion = scanner.nextInt();
+                if (opcion < 1 || opcion > 4)
+                {
+                    System.out.println("Opción no válida. Por favor, ingrese un número entre 1 y 4.");
+                }
+            }
+            else
+            {
+                System.out.println("Entrada inválida. Por favor, ingrese un número.");
+                scanner.next(); // Limpiar el buffer del scanner
+            }
+        }
+        
+        // Imprimir según la opción seleccionada
+        // Realizar la acción correspondiente a la opción seleccionada
+        switch (opcion)
+        {
+            case 1:
+                leerArchivoYMostrarContenido(cintaVCI);
+                break;
+            case 2:
+                leerArchivoYMostrarContenido2(cintaVCI);
+                break;
+            case 3:
+                leerArchivoYMostrarContenido3(cintaVCI);
+                break;
+            case 4:
+                leerArchivoYMostrarContenido4(cintaVCI);
+                break;
+            default:
+                System.out.println("Opción no válida.");
+        }
         
         long tiempo_final = System.currentTimeMillis() - tiempo_inicial;
         double tiempo_en_segundos = tiempo_final / 1000.0; // Convertir a segundos
@@ -548,6 +620,73 @@ public class Vector_Código_Intermedio2 {
         catch (IOException e)
         {
             System.err.println("Error al leer el archivo: " + e.getMessage());
+        }
+    }
+    
+    public static void leerArchivoYMostrarContenido2(String rutaArchivo)
+    {
+        try
+        {
+            Path path = Paths.get(rutaArchivo);
+            List<String> contenido = Files.readAllLines(path);
+            if (!contenido.isEmpty())
+            {
+                System.out.println("Contenido del archivo:");
+                System.out.println(contenido.get(0)); // Imprime solo el primer renglón
+            }
+            else
+            {
+                System.out.println("El archivo está vacío.");
+            }
+        }
+        catch (IOException e)
+        {
+            System.err.println("Error al leer el archivo: " + e.getMessage());
+        }
+    }
+    
+    public static void leerArchivoYMostrarContenido3(String rutaArchivo)
+    {
+        try
+        {
+            Path path = Paths.get(rutaArchivo);
+            List<String> lineas = Files.readAllLines(path);
+            System.out.println("Contenido del archivo:");
+            
+            // Imprimir el primer renglón
+            imprimirRenglonConNumeros(lineas.get(0));
+        }
+        catch (IOException e)
+        {
+            System.err.println("Error al leer el archivo: " + e.getMessage());
+        }
+    }
+    
+    public static void leerArchivoYMostrarContenido4(String rutaArchivo)
+    {
+        try
+        {
+            Path path = Paths.get(rutaArchivo);
+            List<String> lineas = Files.readAllLines(path);
+            String primerRenglon = lineas.get(0);
+            String[] elementos = primerRenglon.split(" ↕ ");
+            System.out.println("Contenido del archivo:");
+            
+            for (String elemento : elementos)
+            {
+                System.out.println(elemento);
+            }
+        }
+        catch (IOException e)
+        {
+            System.err.println("Error al leer el archivo: " + e.getMessage());
+        }
+    }
+    
+    public static void imprimirRenglonConNumeros(String linea) {
+        String[] elementos = linea.split(" ↕ ");
+        for (int i = 0; i < elementos.length; i++) {
+            System.out.println(String.format("%-3d %-20s", i, elementos[i]));
         }
     }
     
