@@ -12,7 +12,7 @@
   </ul>
 </div>
 
-<!--Titulo de Practicas-->
+<!--Subitulo-->
 <div id="user-content-toc">
   <ul align="rigth" >
     <summary>
@@ -719,8 +719,11 @@
     </div>
   </div>
 
+  <!--Subitulo-->
   <ul align="rigth">
     <summary>
+      <!--Divizor horizontal (gradiant)-->
+      <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
       <!--Titulo-->
       <h2 style="display: inline-block">Practica 2 Vector de codigo intermedio</h2>
       <!--Divizor horizontal (gradiant)-->
@@ -890,4 +893,16 @@
       </tr>
     </table>
   </div>
+
+  <!--Subitulo-->
+  <ul align="rigth">
+    <summary>
+      <!--Divizor horizontal (gradiant)-->
+      <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
+      <!--Titulo-->
+      <h2 style="display: inline-block">Practica 3 Optimización</h2>
+      <!--Divizor horizontal (gradiant)-->
+      <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
+    </summary>
+  </ul>
 </div>
