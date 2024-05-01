@@ -919,7 +919,7 @@
   </ul>
 </div>
 
-<div id="user-content-toc">
+<div>
   <!-- Objetivo -->
   <h3>Objetivo:</h3>
   <p>
@@ -928,11 +928,13 @@
   <!-- Desarrollo -->
   <h3>Desarrollo:</h3>
   <div>
-    ● Realice una investigación donde muestre al menos tres ejemplos de optimizaciones asociadas con un compilador para el lenguaje de programación JAVA <br>
-    ● Pruebe y muestre cada código investigado e indique el tipo de optimización al que está asociado <br>
-    ● Explique cada tipo de optimización y clasifique <br>
-    ● Realice alguna modificacion en base a los datos de prueba y ejecute, documente <br>
-    ● Muestre pantallas de diseño y ejecución de cada uno de los códigos <br>
-    ● Incluya archivos fuente generados y capturas de pantalla de la ejecución de los programas
+    <ul>
+      <li>Realice una investigación donde muestre al menos tres ejemplos de optimizaciones asociadas con un compilador para el lenguaje de programación JAVA </li>
+      <li>Pruebe y muestre cada código investigado e indique el tipo de optimización al que está asociado </li>
+      <li>Explique cada tipo de optimización y clasifique </li>
+      <li>Realice alguna modificacion en base a los datos de prueba y ejecute, documente </li>
+      <li>Muestre pantallas de diseño y ejecución de cada uno de los códigos </li>
+      <li>Incluya archivos fuente generados y capturas de pantalla de la ejecución de los programas </li>
+    </ul>
   </div>
 </div>
