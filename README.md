@@ -1,7 +1,7 @@
 <!--Titulo principal-->
 <!--h1 Sin borde inferior-->
 <div id="user-content-toc">
-  <ul align="center" >
+  <ul align="center">
     <summary>
       <!--Titulo-->
       <h2 style="display: inline-bloc">Automatas 2</h2>
@@ -14,7 +14,7 @@
 
 <!--Subitulo-->
 <div id="user-content-toc">
-  <ul align="rigth" >
+  <ul align="rigth">
     <summary>
       <!--Titulo-->
       <h2 style="display: inline-block">Practica 1 Analisis semantico</h2>
@@ -79,10 +79,12 @@
   <h3>TABLA DE DIRECCIONES</h3>
   <div>
     <table>
-      <th>ID</th>
-      <th>Token</th>
-      <th>No. Linea</th>
-      <th>VCI</th>
+      <tr>
+        <th>ID</th>
+        <th>Token</th>
+        <th>No. Linea</th>
+        <th>VCI</th>
+      </tr>
     </table>
   </div>
   <p>
