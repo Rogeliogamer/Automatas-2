@@ -919,7 +919,7 @@
   </ul>
 </div>
 
-<div>
+<div id="user-content-toc">
   <!-- Objetivo -->
   <h3>Objetivo:</h3>
   <p>
