@@ -967,7 +967,7 @@
   <p>
     El programa arranca con la lectura del archivo de tabla de direcciones y el campo VCI asociado al nombre del programa y la posicion de inicio. Dicha direccion de arranque sera la direccion de inicio en el archivo de VCI y comenzar la pila de ejecucion, asi como enlazar la tabla de simbolos generada en practicas anteriores y la salida será la ejecución de las instrucciones correspondientes al código, asi como la tabla de simbolos, debe considerar utilizar y/o actualizar los valores de las variables contenidas en la tabla de símbolos ( entrada / salida de datos ) y almacenar en archivo externo.
   </p>
-  <p>
+<p>
     La aplicación mostrará en pantalla la salida correspondiente a la instruccion de salida de datos y la instruccion de entrada de datos se vera reflejará en tabla de símbolos, al finalizar el programa mostrara tabla de simbolos modificada.
   </p>
 </div> 
