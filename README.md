@@ -938,3 +938,36 @@
     </ul>
   </div>
 </div>
+
+<!--Subitulo-->
+<div id="user-content-toc">
+  <ul align="rigth">
+    <summary>
+      <!--Divizor horizontal (gradiant)-->
+      <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
+      <!--Titulo-->
+      <h2 style="display: inline-block">Practica 4 Simulación de la pila de ejecución del VCI</h2>
+      <!--Divizor horizontal (gradiant)-->
+      <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
+    </summary>
+  </ul>
+</div>
+
+<div id="user-content-toc">
+  <!--Objetivo-->
+  <h3>Objetivo:</h3>
+  <p>
+    El alumno aplica los conceptos asociados para la pila de ejecución del Vector de código intermedio en expresiones aritméticas/lógica/relacionales y en estructuras de control para un lenguaje de prueba, utilizando el lenguaje de programación JAVA
+  </p>
+  <!--Desarrollo-->
+  <h3>Desarrollo:</h3>
+  <p>
+    A partir del vector de código intermedio, tabla de simbolos y tabla de direcciones (archivos generados en prácticas anteriores), donde considera expresiónes aritmética-lógica-relacional y estructuras de control, simule una aplicación para el manejo de la pila de ejecución utilizando el lenguaje de programación JAVA.
+  </p>
+  <p>
+    El programa arranca con la lectura del archivo de tabla de direcciones y el campo VCI asociado al nombre del programa y la posicion de inicio. Dicha direccion de arranque sera la direccion de inicio en el archivo de VCI y comenzar la pila de ejecucion, asi como enlazar la tabla de simbolos generada en practicas anteriores y la salida será la ejecución de las instrucciones correspondientes al código, asi como la tabla de simbolos, debe considerar utilizar y/o actualizar los valores de las variables contenidas en la tabla de símbolos ( entrada / salida de datos ) y almacenar en archivo externo.
+  </p>
+  <p>
+    La aplicación mostrará en pantalla la salida correspondiente a la instruccion de salida de datos y la instruccion de entrada de datos se vera reflejará en tabla de símbolos, al finalizar el programa mostrara tabla de simbolos modificada.
+  </p>
+</div> 
