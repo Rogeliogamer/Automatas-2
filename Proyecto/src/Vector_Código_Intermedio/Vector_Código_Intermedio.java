@@ -38,7 +38,7 @@ public class Vector_Código_Intermedio {
         long tiempo_inicial = System.currentTimeMillis();
         // Leer el archivo de texto línea por línea
         //try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\rogel\\OneDrive\\Escritorio\\Semestre 8\\Lenguajes Y Autómatas II\\Proyecto\\src\\Recursos\\Tabla de Tokens2.txt")))
-        try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\rogel\\OneDrive\\Escritorio\\Semestre 8\\Lenguajes Y Autómatas II\\Proyecto\\src\\Recursos\\Ejemplo9.txt")))
+        try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\rogel\\OneDrive\\Escritorio\\Semestre 8\\Lenguajes Y Autómatas II\\Proyecto\\src\\Recursos\\Tabla de Tokens2.txt")))
         {
             String linea;
             String lineaSiguiente = null;
@@ -128,7 +128,7 @@ public class Vector_Código_Intermedio {
                                 pilaDeEstatutos.pop();
                             }
 
-                            String archivo = "C:\\Users\\rogel\\OneDrive\\Escritorio\\Semestre 8\\Lenguajes Y Autómatas II\\Proyecto\\src\\Recursos\\Ejemplo9.txt";
+                            String archivo = "C:\\Users\\rogel\\OneDrive\\Escritorio\\Semestre 8\\Lenguajes Y Autómatas II\\Proyecto\\src\\Recursos\\Tabla de Tokens2.txt";
                             String palabraBuscada = linea;
                             try (BufferedReader br2 = new BufferedReader(new FileReader(archivo))) 
                             {
@@ -380,6 +380,7 @@ public class Vector_Código_Intermedio {
         // Leemos y mostramos el contenido del archivo de texto
         ArrayList<String> primeraLinea = new ArrayList<>();
         ArrayList<String> segundaLinea = new ArrayList<>();
+        
         try (BufferedReader br = new BufferedReader(new FileReader(cintaVCI)))
         {
             String linea;
@@ -439,6 +440,19 @@ public class Vector_Código_Intermedio {
                 break;
             default:
                 System.out.println("Opción no válida.");
+        }
+        
+        // Dar formato al archivo
+        try
+        {
+            // Procesar el archivo
+            formatoArchivo(cintaVCI);
+            
+            System.out.println("Datos procesados y guardados en el archivo " + cintaVCI);
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
         }
         
         long tiempo_final = System.currentTimeMillis() - tiempo_inicial;
@@ -708,8 +722,41 @@ public class Vector_Código_Intermedio {
             return "La cadena es nula.";
         }
     }
+    
+    public static void formatoArchivo(String cintaVCI) throws IOException
+    {
+        // Abrir el archivo para lectura
+        BufferedReader reader = new BufferedReader(new FileReader(cintaVCI));
+        
+        // Leer solo la primera línea
+        String line = reader.readLine();
+        
+        // Crear un StringBuilder para almacenar el contenido
+        StringBuilder outputContent = new StringBuilder();
+        
+        // Verificar si la primera línea es null
+        if (line != null)
+        {
+            // Dividir la línea en elementos
+            String[] elements = line.split(" ↕ ");
+
+            // Concatenar los elementos con saltos de línea
+            for (String element : elements)
+            {
+                outputContent.append(element).append("\n");
+            }
+        }
+        
+        // Cerrar el archivo de entrada
+        reader.close();
+        
+        // Abrir el archivo para escritura
+        FileWriter writer = new FileWriter(cintaVCI);
+        
+        // Escribir el contenido procesado en el archivo
+        writer.write(outputContent.toString());
+        
+        // Cerrar el archivo de salida
+        writer.close();
+    }
 }
-
-
-
-
