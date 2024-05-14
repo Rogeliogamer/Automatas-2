@@ -1,31 +1,541 @@
 package Simulacion_Ejecución_VCI;
 
+import java.util.Map;
+import java.util.HashMap;
+import java.util.Stack;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.LinkedHashMap;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Stack;
 
 /**
  *
  * @author Rogelio Perez Guevara
  * @author Equipo 2
- * @version 09/05/2024
+ * @version 14/05/2024
  */
 public class Simulacion_Ejecución_VCI {
-    public static void main(String[] args) {
-        String archivoVariables = "C:\\Users\\rogel\\OneDrive\\Escritorio\\Semestre 8\\Lenguajes Y Autómatas II\\Proyecto\\src\\Recursos\\TS.txt"; // Nombre del archivo TXT de variables
-        String archivoOperaciones = "C:\\Users\\rogel\\OneDrive\\Escritorio\\Semestre 8\\Lenguajes Y Autómatas II\\Proyecto\\src\\Recursos\\CV.txt"; // Nombre del archivo TXT de operaciones
-        Map<String, Object> pila = new LinkedHashMap<>();
-        Map<String, Object> variables = new HashMap<>();
-
+    static String archivoVariables = "C:\\Users\\rogel\\OneDrive\\Escritorio\\Semestre 8\\Lenguajes Y Autómatas II\\Proyecto\\src\\Recursos\\TS2.txt"; // Nombre del archivo TXT de variables
+    static String archivoOperaciones = "C:\\Users\\rogel\\OneDrive\\Escritorio\\Semestre 8\\Lenguajes Y Autómatas II\\Proyecto\\src\\Recursos\\CV2.txt"; // Nombre del archivo TXT de operaciones
+    static Map<String, Object> variables = new HashMap<>();
+    static Stack<String> lexema = new Stack<>();
+    static Stack<String> valorlexema = new Stack<>();
+    static Stack<Integer> apuntador = new Stack<>();
+    
+    public static void main(String[] args)
+    {
         // Leer el archivo de variables y almacenar las variables
         leerVariables(archivoVariables, variables);
-
-        // Procesar el archivo de operaciones
-        procesarOperaciones(archivoOperaciones, pila, variables);
+        
+        try (BufferedReader lector = new BufferedReader(new FileReader(archivoOperaciones)))
+        {
+            String linea;
+            String string2 = null;
+            String numtoken2 = null;
+            int apu2 = -1;
+            String string1 = null;
+            String numtoken1 = null;
+            int apu1 = -1;
+            Map.Entry<String, Object> entry2;
+            Map.Entry<String, Object> entry1;
+            Map.Entry<String, Object> lastEntry1;
+            Map.Entry<String, Object> lastEntry2;
+            String str1 = null;
+            String str2 = null;
+            double numeroDouble1;
+            double numeroDouble2;
+            int apu = 0;
+            
+            while ((linea = lector.readLine()) != null)
+            {
+                String[] partes = linea.split(",");
+                
+                String lexematoken = partes[0];
+                
+                // Realizar la operación correspondiente
+                    switch (lexematoken)
+                    {
+                        case "*":
+                            // Obtener la ultima entrada de las pilas
+                            // Verificar si la pilas no están vacías
+                            if (!lexema.isEmpty() && !valorlexema.isEmpty())
+                            {
+                                string2 = lexema.pop();
+                                numtoken2 = valorlexema.pop();
+                            }
+                            
+                            // Verificar si la pilas no están vacías
+                            if (!lexema.isEmpty() && !valorlexema.isEmpty())
+                            {
+                                string1 = lexema.pop();
+                                numtoken1 = valorlexema.pop();
+                            }
+                            
+                            // Verificar si la clave contiene solo números
+                            if (!string2.matches("\\d+")) { // Verifica si la clave no contiene solo números
+                                // Variable para almacenar el valor asociado con la clave buscada
+                                Object value = variables.get(string2);
+                                value = value + "";
+                                if (value != null && !value.equals("null"))
+                                {
+                                    numtoken2 = (String) value;
+                                }
+                            }
+                            
+                            // Verificar si la clave contiene solo números
+                            if (!string1.matches("\\d+")) { // Verifica si la clave no contiene solo números
+                                // Variable para almacenar el valor asociado con la clave buscada
+                                Object value = variables.get(string1);
+                                value = value + "";
+                                if (value != null && !value.equals("null"))
+                                {
+                                    numtoken1 = (String) value; 
+                                }
+                            }
+                            
+                            // Convertir a double
+                            numeroDouble1 = Double.parseDouble(numtoken1);
+                            numeroDouble2 = Double.parseDouble(numtoken2);
+                            
+                            double multiplicacion = numeroDouble1 * numeroDouble2;
+                            lexema.push(""+multiplicacion);
+                            valorlexema.push(""+multiplicacion);
+                            
+                            string1 = null;
+                            numtoken1 = null;
+                            apu1 = -1;
+                            string2 = null;
+                            numtoken2 = null;
+                            apu2 = -1;
+                            numeroDouble1 = 0;
+                            numeroDouble2 = 0;
+                            multiplicacion = 0;
+                            break;
+                        case "/":
+                            // Obtener la ultima entrada de las pilas
+                            // Verificar si la pilas no están vacías
+                            if (!lexema.isEmpty() && !valorlexema.isEmpty())
+                            {
+                                string2 = lexema.pop();
+                                numtoken2 = valorlexema.pop();
+                            }
+                            
+                            // Verificar si la pilas no están vacías
+                            if (!lexema.isEmpty() && !valorlexema.isEmpty())
+                            {
+                                string1 = lexema.pop();
+                                numtoken1 = valorlexema.pop();
+                            }
+                            
+                            // Verificar si la clave contiene solo números
+                            if (!string2.matches("\\d+")) { // Verifica si la clave no contiene solo números
+                                // Variable para almacenar el valor asociado con la clave buscada
+                                Object value = variables.get(string2);
+                                value = value + "";
+                                if (value != null && !value.equals("null"))
+                                {
+                                    numtoken2 = (String) value;
+                                }
+                            }
+                            
+                            // Verificar si la clave contiene solo números
+                            if (!string1.matches("\\d+")) { // Verifica si la clave no contiene solo números
+                                // Variable para almacenar el valor asociado con la clave buscada
+                                Object value = variables.get(string1);
+                                value = value + "";
+                                if (value != null && !value.equals("null"))
+                                {
+                                    numtoken1 = (String) value; 
+                                }
+                            }
+                            
+                            // Convertir a double
+                            numeroDouble1 = Double.parseDouble(numtoken1);
+                            numeroDouble2 = Double.parseDouble(numtoken2);
+                            
+                            double division = numeroDouble1 / numeroDouble2;
+                            lexema.push(""+division);
+                            valorlexema.push(""+division);
+                            
+                            string1 = null;
+                            numtoken1 = null;
+                            apu1 = -1;
+                            string2 = null;
+                            numtoken2 = null;
+                            apu2 = -1;
+                            numeroDouble1 = 0;
+                            numeroDouble2 = 0;
+                            multiplicacion = 0;
+                            break;
+                        case "+":
+                            // Obtener la ultima entrada de las pilas
+                            // Verificar si la pilas no están vacías
+                            if (!lexema.isEmpty() && !valorlexema.isEmpty())
+                            {
+                                string2 = lexema.pop();
+                                numtoken2 = valorlexema.pop();
+                            }
+                            
+                            // Verificar si la pilas no están vacías
+                            if (!lexema.isEmpty() && !valorlexema.isEmpty())
+                            {
+                                string1 = lexema.pop();
+                                numtoken1 = valorlexema.pop();
+                            }
+                            
+                            // Verificar si la clave contiene solo números
+                            if (!string2.matches("\\d+")) { // Verifica si la clave no contiene solo números
+                                // Variable para almacenar el valor asociado con la clave buscada
+                                Object value = variables.get(string2);
+                                value = value + "";
+                                if (value != null && !value.equals("null"))
+                                {
+                                    numtoken2 = (String) value;
+                                }
+                            }
+                            
+                            // Verificar si la clave contiene solo números
+                            if (!string1.matches("\\d+")) { // Verifica si la clave no contiene solo números
+                                // Variable para almacenar el valor asociado con la clave buscada
+                                Object value = variables.get(string1);
+                                value = value + "";
+                                if (value != null && !value.equals("null"))
+                                {
+                                    numtoken1 = (String) value; 
+                                }
+                            }
+                            
+                            // Convertir a double
+                            numeroDouble1 = Double.parseDouble(numtoken1);
+                            numeroDouble2 = Double.parseDouble(numtoken2);
+                            
+                            double suma = numeroDouble1 + numeroDouble2;
+                            lexema.push(""+suma);
+                            valorlexema.push(""+suma);
+                            
+                            string1 = null;
+                            numtoken1 = null;
+                            apu1 = -1;
+                            string2 = null;
+                            numtoken2 = null;
+                            apu2 = -1;
+                            numeroDouble1 = 0;
+                            numeroDouble2 = 0;
+                            suma = 0;
+                            break;
+                        case "-":
+                            // Obtener la ultima entrada de las pilas
+                            // Verificar si la pilas no están vacías
+                            if (!lexema.isEmpty() && !valorlexema.isEmpty())
+                            {
+                                string2 = lexema.pop();
+                                numtoken2 = valorlexema.pop();
+                            }
+                            
+                            // Verificar si la pilas no están vacías
+                            if (!lexema.isEmpty() && !valorlexema.isEmpty())
+                            {
+                                string1 = lexema.pop();
+                                numtoken1 = valorlexema.pop();
+                            }
+                            
+                            // Verificar si la clave contiene solo números
+                            if (!string2.matches("\\d+")) { // Verifica si la clave no contiene solo números
+                                // Variable para almacenar el valor asociado con la clave buscada
+                                Object value = variables.get(string2);
+                                value = value + "";
+                                if (value != null && !value.equals("null"))
+                                {
+                                    numtoken2 = (String) value;
+                                }
+                            }
+                            
+                            // Verificar si la clave contiene solo números
+                            if (!string1.matches("\\d+")) { // Verifica si la clave no contiene solo números
+                                // Variable para almacenar el valor asociado con la clave buscada
+                                Object value = variables.get(string1);
+                                value = value + "";
+                                if (value != null && !value.equals("null"))
+                                {
+                                    numtoken1 = (String) value; 
+                                }
+                            }
+                            
+                            // Convertir a double
+                            numeroDouble1 = Double.parseDouble(numtoken1);
+                            numeroDouble2 = Double.parseDouble(numtoken2);
+                            
+                            double menos = numeroDouble1 / numeroDouble2;
+                            lexema.push(""+menos);
+                            valorlexema.push(""+menos);
+                            
+                            string1 = null;
+                            numtoken1 = null;
+                            apu1 = -1;
+                            string2 = null;
+                            numtoken2 = null;
+                            apu2 = -1;
+                            numeroDouble1 = 0;
+                            numeroDouble2 = 0;
+                            menos = 0;
+                            break;
+                        case "=":
+                            // Obtener la ultima entrada de las pilas
+                            // Verificar si la pilas no están vacías
+                            if (!lexema.isEmpty() && !valorlexema.isEmpty())
+                            {
+                                string2 = lexema.pop();
+                                numtoken2 = valorlexema.pop();
+                            }
+                            
+                            // Verificar si la pilas no están vacías
+                            if (!lexema.isEmpty() && !valorlexema.isEmpty())
+                            {
+                                string1 = lexema.pop();
+                                numtoken1 = valorlexema.pop();
+                            }
+                            
+                            // Verificar si la clave no es un valor booleano
+                            if (!"true".equalsIgnoreCase(string2) && !"false".equalsIgnoreCase(string2))
+                            {
+                                // Verificar si la clave contiene solo números
+                                if (!string2.matches("\\d+")) // Verifica si la clave no contiene solo números
+                                {
+                                    // Variable para almacenar el valor asociado con la clave buscada
+                                    Object value = variables.get(string2);
+                                    value = value + "";
+                                    if (value != null && !value.equals("null"))
+                                    {
+                                        numtoken2 = (String) value;
+                                    }
+                                }
+                            }
+                            
+                            // Verificar si la clave no es un valor booleano
+                            if (!"true".equalsIgnoreCase(string1) && !"false".equalsIgnoreCase(string1)) {
+                                // Verificar si la clave contiene solo números
+                                if (!string1.matches("\\d+")) { // Verifica si la clave no contiene solo números
+                                    // Variable para almacenar el valor asociado con la clave buscada
+                                    Object value = variables.get(string1);
+                                    value = value + "";
+                                    if (value != null && !value.equals("null"))
+                                    {
+                                        numtoken1 = (String) value;
+                                    }
+                                }
+                            }
+                            
+                            variables.put(string1, numtoken2);                           
+                            
+                            string1 = null;
+                            numtoken1 = null;
+                            apu1 = -1;
+                            string2 = null;
+                            numtoken2 = null;
+                            apu2 = -1;
+                            numeroDouble1 = 0;
+                            numeroDouble2 = 0;
+                            menos = 0;
+                            break;
+                        case "<":
+                            // Obtener la ultima entrada de las pilas
+                            // Verificar si la pilas no están vacías
+                            if (!lexema.isEmpty() && !valorlexema.isEmpty())
+                            {
+                                string2 = lexema.pop();
+                                numtoken2 = valorlexema.pop();
+                            }
+                            
+                            // Verificar si la pilas no están vacías
+                            if (!lexema.isEmpty() && !valorlexema.isEmpty())
+                            {
+                                string1 = lexema.pop();
+                                numtoken1 = valorlexema.pop();
+                            }
+                            
+                            // Verificar si la clave contiene solo números
+                            if (!string2.matches("\\d+")) { // Verifica si la clave no contiene solo números
+                                // Variable para almacenar el valor asociado con la clave buscada
+                                Object value = variables.get(string2);
+                                value = value + "";
+                                if (value != null && !value.equals("null"))
+                                {
+                                    numtoken2 = (String) value;
+                                }
+                            }
+                            
+                            // Verificar si la clave contiene solo números
+                            if (!string1.matches("\\d+")) { // Verifica si la clave no contiene solo números
+                                // Variable para almacenar el valor asociado con la clave buscada
+                                Object value = variables.get(string1);
+                                value = value + "";
+                                if (value != null && !value.equals("null"))
+                                {
+                                    numtoken1 = (String) value; 
+                                }
+                            }
+                            
+                            // Convertir a double
+                            numeroDouble1 = Double.parseDouble(numtoken1);
+                            numeroDouble2 = Double.parseDouble(numtoken2);
+                            
+                            if(numeroDouble1 < numeroDouble2) {
+                                boolean menor_que = true;
+                                lexema.push(""+menor_que);
+                                valorlexema.push(""+menor_que);
+                            }
+                            else {
+                                boolean menor_que = false;
+                                lexema.push(""+menor_que);
+                                valorlexema.push(""+menor_que);
+                            }
+                            
+                            string1 = null;
+                            numtoken1 = null;
+                            apu1 = -1;
+                            string2 = null;
+                            numtoken2 = null;
+                            apu2 = -1;
+                            numeroDouble1 = 0;
+                            numeroDouble2 = 0;
+                            menos = 0;
+                            break;
+                        case "<=":
+                            // Obtener la ultima entrada de las pilas
+                            // Verificar si la pilas no están vacías
+                            if (!lexema.isEmpty() && !valorlexema.isEmpty())
+                            {
+                                string2 = lexema.pop();
+                                numtoken2 = valorlexema.pop();
+                            }
+                            
+                            // Verificar si la pilas no están vacías
+                            if (!lexema.isEmpty() && !valorlexema.isEmpty())
+                            {
+                                string1 = lexema.pop();
+                                numtoken1 = valorlexema.pop();
+                            }
+                            
+                            // Verificar si la clave contiene solo números
+                            if (!string2.matches("\\d+")) { // Verifica si la clave no contiene solo números
+                                // Variable para almacenar el valor asociado con la clave buscada
+                                Object value = variables.get(string2);
+                                value = value + "";
+                                if (value != null && !value.equals("null"))
+                                {
+                                    numtoken2 = (String) value;
+                                }
+                            }
+                            
+                            // Verificar si la clave contiene solo números
+                            if (!string1.matches("\\d+")) { // Verifica si la clave no contiene solo números
+                                // Variable para almacenar el valor asociado con la clave buscada
+                                Object value = variables.get(string1);
+                                value = value + "";
+                                if (value != null && !value.equals("null"))
+                                {
+                                    numtoken1 = (String) value; 
+                                }
+                            }
+                            
+                            // Convertir a double
+                            numeroDouble1 = Double.parseDouble(numtoken1);
+                            numeroDouble2 = Double.parseDouble(numtoken2);
+                            
+                            if(numeroDouble1 <= numeroDouble2) {
+                                boolean menor_que = true;
+                                lexema.push(""+menor_que);
+                                valorlexema.push(""+menor_que);
+                            }
+                            else {
+                                boolean menor_que = false;
+                                lexema.push(""+menor_que);
+                                valorlexema.push(""+menor_que);
+                            }
+                            
+                            string1 = null;
+                            numtoken1 = null;
+                            apu1 = -1;
+                            string2 = null;
+                            numtoken2 = null;
+                            apu2 = -1;
+                            numeroDouble1 = 0;
+                            numeroDouble2 = 0;
+                            menos = 0;
+                            break;
+                        case "||":
+                            // Obtener la ultima entrada de las pilas
+                            // Verificar si la pilas no están vacías
+                            if (!lexema.isEmpty() && !valorlexema.isEmpty())
+                            {
+                                string2 = lexema.pop();
+                                numtoken2 = valorlexema.pop();
+                            }
+                            
+                            // Verificar si la pilas no están vacías
+                            if (!lexema.isEmpty() && !valorlexema.isEmpty())
+                            {
+                                string1 = lexema.pop();
+                                numtoken1 = valorlexema.pop();
+                            }
+                            
+                            // Verificar si la clave contiene solo números
+                            if (!string2.matches("\\d+")) { // Verifica si la clave no contiene solo números
+                                // Variable para almacenar el valor asociado con la clave buscada
+                                Object value = variables.get(string2);
+                                value = value + "";
+                                if (value != null && !value.equals("null"))
+                                {
+                                    numtoken2 = (String) value;
+                                }
+                            }
+                            
+                            // Verificar si la clave contiene solo números
+                            if (!string1.matches("\\d+")) { // Verifica si la clave no contiene solo números
+                                // Variable para almacenar el valor asociado con la clave buscada
+                                Object value = variables.get(string1);
+                                value = value + "";
+                                if (value != null && !value.equals("null"))
+                                {
+                                    numtoken1 = (String) value; 
+                                }
+                            }
+                            
+                            
+                            if ("true".equals(string1) || "true".equals(string2))
+                            {
+                                boolean or = true;
+                                lexema.push(""+or);
+                                valorlexema.push(""+or);
+                            }
+                            else {
+                                
+                                boolean or = false;
+                                lexema.push(""+or);
+                                valorlexema.push(""+or);
+                            }
+                            
+                            string1 = null;
+                            numtoken1 = null;
+                            apu1 = -1;
+                            string2 = null;
+                            numtoken2 = null;
+                            apu2 = -1;
+                            numeroDouble1 = 0;
+                            numeroDouble2 = 0;
+                            menos = 0;
+                            break;
+                        default:
+                            lexema.push(lexematoken);
+                            valorlexema.push(lexematoken);
+                            apu++;
+                            break;
+                    }
+            }
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
     }
     
     // Método para leer el archivo de variables y almacenar las variables en el mapa
@@ -43,336 +553,6 @@ public class Simulacion_Ejecución_VCI {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    
-    // Método para procesar el archivo de operaciones
-    private static void procesarOperaciones(String archivoOperaciones, Map<String, Object> pila, Map<String, Object> variables) {
-        try (BufferedReader lector = new BufferedReader(new FileReader(archivoOperaciones))) {
-            String linea;
-            String string2 = null;
-            Object numtoken2 = null;
-            String string1 = null;
-            Object numtoken1 = null;
-            Map.Entry<String, Object> entry2;
-            Map.Entry<String, Object> entry1;
-            Map.Entry<String, Object> lastEntry1;
-            Map.Entry<String, Object> lastEntry2;
-            String str1 = null;
-            String str2 = null;
-            double numeroDouble1;
-            double numeroDouble2;
-            
-            while ((linea = lector.readLine()) != null) {
-                String[] partes = linea.split(",");
-                if (partes.length == 4) {
-                    String operacion = partes[0];
-                    String tipoDato = partes[1];
-                    String valor = partes[2];
-                
-                    // Realizar la operación correspondiente
-                    switch (operacion) {
-                        case "+":
-                            // Variables para almacenar el String y el Object
-                            string2 = null;
-                            numtoken2 = null;
-                            
-                            // Obtener la ultima entrada del mapa
-                            lastEntry1 = null;
-                            for (Map.Entry<String, Object> entry : pila.entrySet()) {
-                                lastEntry1 = entry;
-                            }
-                            if (lastEntry1 != null) {
-                                string2 = lastEntry1.getKey();
-                                numtoken2 = lastEntry1.getValue();
-                            }
-                            
-                            // Eliminar la entrada del mapa
-                            pila.remove(string2);
-                            
-                            // Variables para almacenar el String y el Object
-                            string1 = null;
-                            numtoken1 = null;
-                            
-                            // Obtener la ultima entrada del mapa
-                            lastEntry2 = null;
-                            for (Map.Entry<String, Object> entry : pila.entrySet()) {
-                                lastEntry2 = entry;
-                            }
-                            if (lastEntry2 != null)
-                            {
-                                string1 = lastEntry2.getKey();
-                                numtoken1 = lastEntry2.getValue();
-                            }
-                            
-                            // Eliminar la entrada del mapa
-                            pila.remove(string1);
-                            
-                            // Verificar si la clave contiene solo números
-                            if (!string2.matches("\\d+")) { // Verifica si la clave no contiene solo números
-                                // Variable para almacenar el valor asociado con la clave buscada
-                                Object value = variables.get(string2);
-                                value = value + "";
-                                if (value != null && !value.equals("null"))
-                                {
-                                    str2 = (String) value;
-                                    numtoken2 = str2;
-                                }
-                            }
-                            
-                            // Verificar si la clave contiene solo números
-                            if (!string1.matches("\\d+")) { // Verifica si la clave no contiene solo números
-                                // Variable para almacenar el valor asociado con la clave buscada
-                                Object value = variables.get(string1);
-                                value = value + "";
-                                if (value != null && !value.equals("null"))
-                                {
-                                    str1 = (String) value;
-                                    numtoken1 = str1;
-                                }
-                            }
-                            
-                            if (numtoken1 instanceof Double) {
-                                str1 = numtoken1+"";
-                                str2 = numtoken2+"";
-                            }
-                            else if (numtoken1 instanceof String) {
-                                str1 = (String) numtoken1;
-                                str2 = (String) numtoken2;
-                            }
-                            
-                            // Convertir a double
-                            numeroDouble1 = Double.parseDouble(str1);
-                            numeroDouble2 = Double.parseDouble(str2);
-                            
-                            double suma = numeroDouble1 + numeroDouble2;
-                            pila.put(""+suma, suma);
-                            
-                            break;
-                        case "/":
-                            // Variables para almacenar el String y el Object
-                            string2 = null;
-                            numtoken2 = null;
-                            
-                            // Obtener la ultrima entrada del mapa
-                            lastEntry1 = null;
-                            for (Map.Entry<String, Object> entry : pila.entrySet()) {
-                                lastEntry1 = entry;
-                            }
-                            if (lastEntry1 != null)
-                            {
-                                string2 = lastEntry1.getKey();
-                                numtoken2 = lastEntry1.getValue();
-                            }
-                            
-                            // Eliminar la entrada del mapa
-                            pila.remove(string2);
-                            
-                            // Variables para almacenar el String y el Object
-                            string1 = null;
-                            numtoken1 = null;
-                            
-                            // Obtener la ultima entrada del mapa
-                            lastEntry2 = null;
-                            for (Map.Entry<String, Object> entry : pila.entrySet()) {
-                                lastEntry2 = entry;
-                            }
-                            if (lastEntry2 != null) {
-                                string1 = lastEntry2.getKey();
-                                numtoken1 = lastEntry2.getValue();
-                            }
-                            
-                            // Eliminar la entrada del mapa
-                            pila.remove(string1);
-                            
-                            /// Verificar si la clave contiene solo números
-                            if (!string2.matches("\\d+")) { // Verifica si la clave no contiene solo números
-                                // Variable para almacenar el valor asociado con la clave buscada
-                                Object value = variables.get(string2);
-                                value = value + "";
-                                if (value != null && !value.equals("null"))
-                                {
-                                    str2 = (String) value;
-                                    numtoken2 = str2;
-                                }
-                            }
-                            
-                            // Verificar si la clave contiene solo números
-                            if (!string1.matches("\\d+")) { // Verifica si la clave no contiene solo números
-                                // Variable para almacenar el valor asociado con la clave buscada
-                                Object value = variables.get(string1);
-                                value = value + "";
-                                if (value != null && !value.equals("null"))
-                                {
-                                    str1 = (String) value;
-                                    numtoken1 = str1;
-                                }
-                            }
-                            
-                            if (numtoken1 instanceof Double) {
-                                str1 = numtoken1+"";
-                                str2 = numtoken2+"";
-                            }
-                            else if (numtoken1 instanceof String) {
-                                str1 = (String) numtoken1;
-                                str2 = (String) numtoken2;
-                            }
-                            
-                            // Convertir a double
-                            numeroDouble1 = Double.parseDouble(str1);
-                            numeroDouble2 = Double.parseDouble(str2);
-                            
-                            double division = numeroDouble1 / numeroDouble2;
-                            pila.put(""+division, division);
-                            
-                            break;
-                        case "*":
-                            // Variables para almacenar el String y el Object
-                            string2 = null;
-                            numtoken2 = null;
-                            
-                            // Obtener la última entrada del mapa
-                            lastEntry1 = null;
-                            for (Map.Entry<String, Object> entry : pila.entrySet()) {
-                                lastEntry1 = entry;
-                            }
-                            if (lastEntry1 != null) {
-                                string2 = lastEntry1.getKey();
-                                numtoken2 = lastEntry1.getValue();
-                            }
-                            
-                            // Eliminar la entrada del mapa
-                            pila.remove(string2);
-                            
-                            // Variables para almacenar el String y el Object
-                            string1 = null;
-                            numtoken1 = null;
-                            
-                            // Obtener la última entrada del mapa
-                            lastEntry2 = null;
-                            for (Map.Entry<String, Object> entry : pila.entrySet()) {
-                                lastEntry2 = entry;
-                            }
-                            if (lastEntry2 != null) {
-                                string1 = lastEntry2.getKey();
-                                numtoken1 = lastEntry2.getValue();
-                            }
-                            
-                            // Eliminar la entrada del mapa
-                            pila.remove(string1);
-                            
-                            // Verificar si la clave contiene solo números
-                            if (!string2.matches("\\d+")) { // Verifica si la clave no contiene solo números
-                                // Variable para almacenar el valor asociado con la clave buscada
-                                Object value = variables.get(string2);
-                                value = value + "";
-                                if (value != null && !value.equals("null"))
-                                {
-                                    str2 = (String) value;
-                                    numtoken2 = str2;
-                                }
-                            }
-                            
-                            // Verificar si la clave contiene solo números
-                            if (!string1.matches("\\d+")) { // Verifica si la clave no contiene solo números
-                                // Variable para almacenar el valor asociado con la clave buscada
-                                Object value = variables.get(string1);
-                                value = value + "";
-                                if (value != null && !value.equals("null"))
-                                {
-                                    str1 = (String) value;
-                                    numtoken1 = str1;
-                                }
-                            }
-                            
-                            if (numtoken1 instanceof Double) {
-                                str1 = numtoken1+"";
-                                str2 = numtoken2+"";
-                            }
-                            else if (numtoken1 instanceof String) {
-                                str1 = (String) numtoken1;
-                                str2 = (String) numtoken2;
-                            }
-                            
-                            // Convertir a double
-                            numeroDouble1 = Double.parseDouble(str1);
-                            numeroDouble2 = Double.parseDouble(str2);
-                            
-                            double multiplicacion = numeroDouble1 * numeroDouble2;
-                            pila.put(""+multiplicacion, multiplicacion);
-                            
-                            break;
-                        case "=":
-                            // Variables para almacenar el String y el Object
-                            string2 = null;
-                            numtoken2 = null;
-                            
-                            // Obtener la ultima entrada del mapa
-                            lastEntry1 = null;
-                            for (Map.Entry<String, Object> entry : pila.entrySet()) {
-                                lastEntry1 = entry;
-                            }
-                            if (lastEntry1 != null) {
-                                string2 = lastEntry1.getKey();
-                                numtoken2 = lastEntry1.getValue();
-                            }
-                            
-                            // Eliminar la entrada del mapa
-                            pila.remove(string2);
-                            
-                            // Variables para almacenar el String y el Object
-                            string1 = null;
-                            numtoken1 = null;
-                            
-                            // Obtener la ultima entrada del mapa
-                            lastEntry2 = null;
-                            for (Map.Entry<String, Object> entry : pila.entrySet()) {
-                                lastEntry2 = entry;
-                            }
-                            if (lastEntry2 != null) {
-                                string1 = lastEntry2.getKey();
-                                numtoken1 = lastEntry2.getValue();
-                            }
-                            
-                            // Eliminar la entrada del mapa
-                            pila.remove(string1);
-                            
-                            // Verificar si la clave contiene solo números
-                            if (!string2.matches("\\d+")) { // Verifica si la clave no contiene solo números
-                                // Variable para almacenar el valor asociado con la clave buscada
-                                Object value = variables.get(string2);
-                                value = value + "";
-                                if (value != null && !value.equals("null"))
-                                {
-                                    str2 = (String) value;
-                                    numtoken2 = str2;
-                                }
-                            }
-                            
-                            // Verificar si la clave contiene solo números
-                            if (!string1.matches("\\d+")) { // Verifica si la clave no contiene solo números
-                                // Variable para almacenar el valor asociado con la clave buscada
-                                Object value = variables.get(string1);
-                                value = value + "";
-                                if (value != null && !value.equals("null"))
-                                {
-                                    str1 = (String) value;
-                                    numtoken1 = str1;
-                                }
-                            }
-                            
-                            variables.put(string1, numtoken2);                           
-                            
-                            break;
-                        default:
-                            pila.put(operacion, operacion);
-                    }
-                }
-            }
-        }
-        catch (IOException e)
-        {
             e.printStackTrace();
         }
     }
