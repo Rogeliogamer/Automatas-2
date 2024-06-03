@@ -1,6 +1,6 @@
-a&,-51,0,Main
+a&,-51,600,Main
 b&,-51,0,Main
-x%,-52,0.0,Main
-y%,-52,0.0,Main
-z$,-53,Null,Main
-dos#,-54,True,Main
+x%,-52,Infinity,Main
+y%,-52,43.559999999999995,Main
+z$,-53,"Hola",Main
+dos#,-54,true,Main
