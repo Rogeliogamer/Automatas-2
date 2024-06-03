@@ -1,0 +1,4 @@
+a,-54,false,Main
+s,-51,10,Main
+x,-54,10,Main
+y,-54,true,Main
