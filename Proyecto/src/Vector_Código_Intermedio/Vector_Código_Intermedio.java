@@ -20,7 +20,8 @@ import java.util.List;
  * @author Equipo 2
  * @version 25/03/2024
  */
-public class Vector_Código_Intermedio {
+public class Vector_Código_Intermedio
+{
     public static Stack<String> pilaDeOperadores = new Stack<>();
     public static Stack<Integer> pilaDePrioridad = new Stack<>();
     public static Stack<String> pilaDeOperadoresTokens = new Stack<>();
@@ -36,13 +37,12 @@ public class Vector_Código_Intermedio {
     public static void main (String [] args) throws IOException
     {
         long tiempo_inicial = System.currentTimeMillis();
+        
         // Leer el archivo de texto línea por línea
-        //try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\rogel\\OneDrive\\Escritorio\\Semestre 8\\Lenguajes Y Autómatas II\\Proyecto\\src\\Recursos\\Tabla de Tokens2.txt")))
         try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\rogel\\OneDrive\\Escritorio\\Semestre 8\\Lenguajes Y Autómatas II\\Proyecto\\src\\Recursos\\Tabla de Tokens2.txt")))
         {
             String linea;
             String lineaSiguiente = null;
-            
             String guardado = null;
             String temporal = null;
             String token = null;
@@ -54,7 +54,7 @@ public class Vector_Código_Intermedio {
             String resultado = null;
             boolean bandera = false;
             
-             while ((linea = br.readLine()) != null)
+            while ((linea = br.readLine()) != null)
             {
                 // Dividir la línea en partes
 
@@ -77,6 +77,7 @@ public class Vector_Código_Intermedio {
                             break;
                         case "entonces":
                             guardado = linea;
+                            
                             while (!pilaDeOperadores.isEmpty())
                             {
                                 pilaDeOperadores.pop();
@@ -130,6 +131,7 @@ public class Vector_Código_Intermedio {
 
                             String archivo = "C:\\Users\\rogel\\OneDrive\\Escritorio\\Semestre 8\\Lenguajes Y Autómatas II\\Proyecto\\src\\Recursos\\Tabla de Tokens2.txt";
                             String palabraBuscada = linea;
+                            
                             try (BufferedReader br2 = new BufferedReader(new FileReader(archivo))) 
                             {
                                 String linea2;
@@ -166,6 +168,7 @@ public class Vector_Código_Intermedio {
                                 if (!pilaDeDirecciones.isEmpty())
                                 {
                                     apuntador2 = pilaDeDirecciones.pop();
+                                    
                                     for (int i = 0; i < cintaDeVCI.size(); i++)
                                     {
                                         if (i == apuntador2)
@@ -284,6 +287,7 @@ public class Vector_Código_Intermedio {
                                 String t = pilaDeOperadores.pop();
                                 pilaDePrioridad.pop();
                                 token = pilaDeOperadoresTokens.pop();
+                                
                                 if (!"(".equals(t))
                                 {
                                     cintaDeVCI.add(token);
@@ -300,6 +304,7 @@ public class Vector_Código_Intermedio {
                                 cintaDeVCI.add(token);
                                 cintaDeVCIApuntador.add(apuntador++);
                             }
+                            
                             if (!pilaDeOperadores.isEmpty())
                             {
                                 //Elimina el ( de la pila
@@ -316,6 +321,7 @@ public class Vector_Código_Intermedio {
                                     cintaDeVCI.add(guardado);
                                     cintaDeVCIApuntador.add(apuntador++);
                                 }
+                                
                                 hasta = null;
                                 guardado = null;
 
@@ -375,8 +381,10 @@ public class Vector_Código_Intermedio {
         
         // Ruta del archivo donde se guardará el texto
         String cintaVCI = "C:\\\\Users\\\\rogel\\\\OneDrive\\\\Escritorio\\\\Semestre 8\\\\Lenguajes Y Autómatas II\\\\Proyecto\\\\src\\\\Recursos\\\\Cinta de VCI.txt";
+        
         // Guardamos los ArrayLists en el archivo de texto
         guardarArrayListsEnArchivo(cintaDeVCI, cintaDeVCIApuntador, cintaVCI);
+        
         // Leemos y mostramos el contenido del archivo de texto
         ArrayList<String> primeraLinea = new ArrayList<>();
         ArrayList<String> segundaLinea = new ArrayList<>();
@@ -384,7 +392,9 @@ public class Vector_Código_Intermedio {
         try (BufferedReader br = new BufferedReader(new FileReader(cintaVCI)))
         {
             String linea;
-            while ((linea = br.readLine()) != null) {
+            
+            while ((linea = br.readLine()) != null)
+            {
                 String[] partes = linea.split(" ↕ ");
                 primeraLinea.add(partes[0]);
                 segundaLinea.add(partes[1]);
@@ -399,6 +409,7 @@ public class Vector_Código_Intermedio {
         // Menú de opciones
         Scanner scanner = new Scanner(System.in);
         int opcion = 0;
+        
         while (opcion < 1 || opcion > 4)
         {
             System.out.println("Menú de Opciones:");
@@ -407,9 +418,11 @@ public class Vector_Código_Intermedio {
             System.out.println("3. Cinta VCI con elementos y apuntadores (Vertical)");
             System.out.println("4. Cinta VCI solo con elementos (Vertical)");
             System.out.print("Ingrese el número de la opción que desea (1-4): ");
+            
             if (scanner.hasNextInt())
             {
                 opcion = scanner.nextInt();
+                
                 if (opcion < 1 || opcion > 4)
                 {
                     System.out.println("Opción no válida. Por favor, ingrese un número entre 1 y 4.");
@@ -447,7 +460,6 @@ public class Vector_Código_Intermedio {
         {
             // Procesar el archivo
             formatoArchivo(cintaVCI);
-            
             System.out.println("Datos procesados y guardados en el archivo " + cintaVCI);
         }
         catch (IOException e)
@@ -586,6 +598,7 @@ public class Vector_Código_Intermedio {
     public static void guardarArrayListsEnArchivo(ArrayList<String> arrayList1, ArrayList<Integer> arrayList2, String rutaArchivo)
     {
         File archivo = new File(rutaArchivo);
+        
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivo)))
         {
             // Verificamos si el archivo no existe y lo creamos
@@ -596,26 +609,31 @@ public class Vector_Código_Intermedio {
             
             // Escribimos el primer ArrayList
             int maxLength = 0;
+            
             for (String elemento : arrayList1)
             {
                 maxLength = Math.max(maxLength, elemento.length());
             }
+            
             for (String elemento : arrayList1)
             {
                 writer.write(String.format("%-" + maxLength + "s", elemento));
                 writer.write(" ↕ ");
             }
+            
             writer.newLine(); // Agregamos un salto de línea después del primer ArrayList
             
             // Escribimos el segundo ArrayList
             for (int i = 0; i < arrayList2.size(); i++)
             {
                 writer.write(String.format("%-" + maxLength + "s", arrayList2.get(i)));
+                
                 if (i < arrayList2.size() - 1)
                 {
                     writer.write(" ↕ ");
                 }
             }
+            
             // No es necesario agregar un salto de línea después del segundo ArrayList porque este será el final del archivo
             System.out.println("ArrayLists guardados en el archivo correctamente.");
         }
@@ -632,6 +650,7 @@ public class Vector_Código_Intermedio {
             java.nio.file.Path path = java.nio.file.Paths.get(rutaArchivo);
             java.util.List<String> contenido = java.nio.file.Files.readAllLines(path);
             System.out.println("Contenido del archivo:");
+            
             for (String linea : contenido)
             {
                 System.out.println(linea);
@@ -649,6 +668,7 @@ public class Vector_Código_Intermedio {
         {
             Path path = Paths.get(rutaArchivo);
             List<String> contenido = Files.readAllLines(path);
+            
             if (!contenido.isEmpty())
             {
                 System.out.println("Contenido del archivo:");
@@ -703,9 +723,12 @@ public class Vector_Código_Intermedio {
         }
     }
     
-    public static void imprimirRenglonConNumeros(String linea) {
+    public static void imprimirRenglonConNumeros(String linea)
+    {
         String[] elementos = linea.split(" ↕ ");
-        for (int i = 0; i < elementos.length; i++) {
+        
+        for (int i = 0; i < elementos.length; i++)
+        {
             System.out.println(String.format("%-3d %-20s", i, elementos[i]));
         }
     }
